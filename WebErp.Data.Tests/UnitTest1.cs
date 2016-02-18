@@ -63,7 +63,7 @@ namespace WebErp.Data.Tests
             kernel.Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
             kernel.Bind<WebErpContext>().ToSelf().WithConstructorArgument("options", DatabaseOptions);
 
-
+             
         }
 
 
