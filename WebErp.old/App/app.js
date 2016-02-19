@@ -1,5 +1,5 @@
-﻿var APPNAME='WebErp'
-(function (angular,appname) {
+﻿
+(function () {
     'use strict';
 
     angular.module('app', [
@@ -12,4 +12,4 @@
         // 3rd Party Modules
         
     ]);
-})(angular,APPNAME);
+})();
