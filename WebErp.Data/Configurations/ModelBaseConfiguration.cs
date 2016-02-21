@@ -1,8 +1,8 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata.Builders;
-using Microsoft.Data.Entity.Metadata.Internal;
+﻿
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +16,10 @@ namespace WebErp.Data.Configurations
     /// <typeparam name="T">Must be IModelBase</typeparam>
     public abstract class ModelBaseConfiguration<T> where T : class, IModelBase
     {
-        protected readonly EntityTypeBuilder<T> Builder;
+        protected readonly EntityTypeConfiguration<T> Builder;
 
         // private readonly ModelBuilder Builder;
-        public ModelBaseConfiguration(ModelBuilder builder) 
+        public ModelBaseConfiguration(DbModelBuilder builder) 
         {
             this.Builder = builder.Entity<T>();
             Initialize();

@@ -1,7 +1,8 @@
-﻿using Microsoft.Data.Entity;
+﻿
 using Ninject;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -14,9 +15,7 @@ namespace WebErp.Data.Repositories
     public class ModelBaseRepository<T> : IModelBaseRepository<T>,IInitializable
             where T : class, IModelBase, new()
     {
-
-        private WebErpContext dataContext;
-
+        
         public void Initialize()
         {
             this.Context = Kernel.Get<WebErpContext>();
@@ -69,7 +68,7 @@ namespace WebErp.Data.Repositories
         public virtual void Add(T entity)
         {
             
-            var dbEntityEntry = Context.Entry<T>(entity);
+            //var dbEntityEntry = Context.Entry<T>(entity);
             Context.Set<T>().Add(entity);
         }
         public virtual void Edit(T entity)

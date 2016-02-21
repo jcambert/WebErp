@@ -1,6 +1,7 @@
-﻿using Microsoft.Data.Entity;
+﻿
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace WebErp.Data.Configurations
 {
     public class UserRoleConfiguration: ModelBaseConfiguration<UserRole>
     {
-        public UserRoleConfiguration(ModelBuilder builder):base(builder)
+        public UserRoleConfiguration(DbModelBuilder builder):base(builder)
         {
 
         }

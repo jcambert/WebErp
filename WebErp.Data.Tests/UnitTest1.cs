@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using WebErp.Data.Infrastructure;
 using WebErp.Data.Repositories;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
 using Ninject.Activation;
 using WebErp.Models;
+using WebErp.Common;
+using System.Data.Entity;
 
 namespace WebErp.Data.Tests
 {
@@ -61,7 +61,11 @@ namespace WebErp.Data.Tests
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
-            kernel.Bind<WebErpContext>().ToSelf().WithConstructorArgument("options", DatabaseOptions);
+            kernel.Bind<IDbContextOptions>().ToProvider<DbContextOptionsProvider>().InSingletonScope();
+            kernel.Bind(typeof(IDbSet<>)).To(typeof(DbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory == false);
+            kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory==true );
+            kernel.Bind<WebErpContext>().ToSelf();
+
 
              
         }
@@ -75,6 +79,7 @@ namespace WebErp.Data.Tests
             using (var ctx=kernel.Get<WebErpContext>())
             {
                 Article art = new Article() { ID ="1", Code = "XC10-3.0PET", Societe = 999, Libelle = "Tole Xc10 ep3 petit format" };
+                Assert.IsTrue(ctx.ArticleSet is FakeDbSet<Article>);
                 ctx.ArticleSet.Add(art);
                 ctx.Commit();
                 
@@ -100,11 +105,6 @@ namespace WebErp.Data.Tests
             }
         }
 
-        public static DbContextOptions DatabaseOptions(IContext context)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<WebErpContext>();
-            optionsBuilder.UseInMemoryDatabase();
-            return optionsBuilder.Options;
-        }
+       
     }
 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata.Internal;
+﻿
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ namespace WebErp.Data.Configurations
 {
     public class ArticleConfiguration : ModelBaseConfiguration<Article>
     {
-        public ArticleConfiguration(ModelBuilder builder) : base(builder)
+        public ArticleConfiguration(DbModelBuilder builder) : base(builder)
         {
 
         }
