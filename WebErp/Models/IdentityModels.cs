@@ -1,8 +1,12 @@
-﻿using System.Security.Claims;
+﻿using System.Data.Entity;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using WebErp.Data;
+using WebErp.Data.Infrastructure;
+using Ninject;
 
 namespace WebErp.Models
 {
@@ -18,7 +22,7 @@ namespace WebErp.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    /*public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -29,5 +33,22 @@ namespace WebErp.Models
         {
             return new ApplicationDbContext();
         }
+    }*/
+
+    public class ApplicationDbContext : WebErpContext
+    {
+        public ApplicationDbContext(IDbContextOptions options) : base(options)
+        {
+            
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            Kernel.GetAll<IModelBaseConfiguration<>>
+        }
+
+        [Inject]
+        public IKernel Kernel { get; set; }
     }
 }

@@ -15,8 +15,9 @@ namespace WebErp.Data.Configurations
         {
 
         }
-        protected override void ConfigureModel()
+        public override void ConfigureModel()
         {
+            Builder.ToTable("Article");
             Builder.Property(a => a.Libelle).IsRequired().HasMaxLength(50);
             Builder.Property(a => a.Type).IsRequired();
         }

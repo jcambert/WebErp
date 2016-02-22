@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
@@ -10,16 +9,12 @@ using WebErp.Models;
 
 namespace WebErp.Data.Configurations
 {
-    /// <summary>
-    /// Model Base Configuration
-    /// </summary>
-    /// <typeparam name="T">Must be IModelBase</typeparam>
-    public abstract class ModelBaseConfiguration<T> where T : class, IModelBase
+    public abstract class ModelBaseConfiguration<T> : IModelBaseConfiguration<T> where T : class
     {
         protected readonly EntityTypeConfiguration<T> Builder;
 
         // private readonly ModelBuilder Builder;
-        public ModelBaseConfiguration(DbModelBuilder builder) 
+        public ModelBaseConfiguration(DbModelBuilder builder)
         {
             this.Builder = builder.Entity<T>();
             Initialize();
@@ -28,9 +23,13 @@ namespace WebErp.Data.Configurations
         /// <summary>
         /// Initialize Model Configuration
         /// </summary>
-        protected void Initialize()
+        public virtual void Initialize()
         {
-            Builder.HasKey(e => new { e.Societe, e.Code });
+            if (typeof(IModelBase).IsAssignableFrom(typeof(T)))
+            {
+                var _builder= (EntityTypeConfiguration<IModelBase>)Convert.ChangeType(Builder, typeof(EntityTypeConfiguration<IModelBase>));
+                _builder.HasKey(e => new { e.Societe, e.Code });
+            }
             ConfigureModel();
         }
 
@@ -38,6 +37,6 @@ namespace WebErp.Data.Configurations
         /// Configure the model
         /// set Require or Length, etc...
         /// </summary>
-        protected abstract void ConfigureModel();
+        public abstract void ConfigureModel();
     }
 }

@@ -41,23 +41,16 @@ namespace WebErp.Data
             await base.SaveChangesAsync();
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
-            IDbSets= this.GetType().GetProperties().Where(p => p.GetMethod.ReturnType == typeof(IDbSet<>)).ToList();
+            
         }
+        
 
-        private List<PropertyInfo> IDbSets { get; set; }
-
-        /*public new IDbSet<T> Set<T>()where T : class
-        {
-           
-        }*/
+    
         #region Entity Sets
         [Inject]
-        public IDbSet<Article> ArticleSet { get; set; }
-        //public IDbSet<User> UserSet { get; set; }
-        //public IDbSet<Role> RoleSet { get; set; }
-        //public IDbSet<UserRole> UserRoleSet { get; set; }
+        public virtual IDbSet<Article> ArticleSet { get; set; }
         #endregion
     }
 }

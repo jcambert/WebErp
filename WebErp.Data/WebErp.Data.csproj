@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebErp.Data</RootNamespace>
     <AssemblyName>WebErp.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -56,11 +65,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Configurations\ArticleConfiguration.cs" />
+    <Compile Include="Configurations\IModelBaseConfiguration.cs" />
     <Compile Include="Configurations\ModelBaseConfiguration.cs" />
-    <Compile Include="Configurations\RoleConfiguration.cs" />
-    <Compile Include="Configurations\UserConfiguration.cs" />
-    <Compile Include="Configurations\UserRoleConfiguration.cs" />
-    <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="Infrastructure\DbContextOptions.cs" />
     <Compile Include="Infrastructure\FakeDbSet.cs" />
     <Compile Include="Infrastructure\IDbContextOptions.cs" />
@@ -69,6 +75,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IModelBaseRepository.cs" />
     <Compile Include="Repositories\ModelBaseRepository.cs" />
+    <Compile Include="Validations\IModelBaseValidation.cs" />
+    <Compile Include="Validations\ModelBaseValidation.cs" />
     <Compile Include="WebErpContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +88,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

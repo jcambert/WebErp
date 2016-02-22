@@ -19,8 +19,9 @@ namespace WebErp.Configurations
 
         }
 
-        protected override void ConfigureModel()
+        public override void ConfigureModel()
         {
+            Builder.ToTable("User");
             Builder.HasMany(u => u.Roles).WithRequired().HasForeignKey(ur => ur.UserId);
             Builder.HasMany(u => u.Claims).WithRequired().HasForeignKey(uc => uc.UserId);
             Builder.HasMany(u => u.Logins).WithRequired().HasForeignKey(ul => ul.UserId);
@@ -29,7 +30,7 @@ namespace WebErp.Configurations
                 IsUnique = true
             };
             Builder.Property(u => u.UserName).IsRequired().HasMaxLength(0x100).HasColumnAnnotation("Index", new IndexAnnotation(indexAttribute));
-            configuration.Property((Expression<Func<TUser, string>>)(u => u.Email)).HasMaxLength(0x100);
+            Builder.Property(u => u.Email).HasMaxLength(0x100);
         }
     }
 }
