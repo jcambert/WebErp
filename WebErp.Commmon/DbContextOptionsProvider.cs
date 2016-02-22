@@ -9,7 +9,7 @@ using System.Web.Configuration;
 using System.Web.Hosting;
 using WebErp.Data.Infrastructure;
 
-namespace WebErp.Common
+namespace WebErp.Commmon
 {
     public class DbContextOptionsProvider : Provider<IDbContextOptions>
     {

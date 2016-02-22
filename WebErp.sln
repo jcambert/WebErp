@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.old", "WebErp.old\WebErp.old.csproj", "{A26B381A-7ABE-4957-8871-5685B410A4E9}"
 EndProject
@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{084BF53D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Services", "WebErp.Services\WebErp.Services.csproj", "{648DAC63-CE72-4875-8A4D-8E8E0C03E69C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Common", "WebErp.Common\WebErp.Common.csproj", "{355EDDEF-917B-41AF-A556-BA5B9FE88A84}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp", "WebErp\WebErp.csproj", "{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Commmon", "WebErp.Commmon\WebErp.Commmon.csproj", "{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +45,14 @@ Global
 		{648DAC63-CE72-4875-8A4D-8E8E0C03E69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{648DAC63-CE72-4875-8A4D-8E8E0C03E69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{648DAC63-CE72-4875-8A4D-8E8E0C03E69C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{355EDDEF-917B-41AF-A556-BA5B9FE88A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{355EDDEF-917B-41AF-A556-BA5B9FE88A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{355EDDEF-917B-41AF-A556-BA5B9FE88A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{355EDDEF-917B-41AF-A556-BA5B9FE88A84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

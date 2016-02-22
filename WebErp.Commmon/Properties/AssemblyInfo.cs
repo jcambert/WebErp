@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("WebErp.Common")]
+[assembly: AssemblyTitle("WebErp.Commmon")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WebErp.Common")]
+[assembly: AssemblyProduct("WebErp.Commmon")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("355eddef-917b-41af-a556-ba5b9fe88a84")]
+[assembly: Guid("5c6efcf7-f5dd-4b7d-800e-f08e69c98410")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //

@@ -72,9 +72,9 @@
     <Compile Include="UnitTest2.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebErp.Common\WebErp.Common.csproj">
-      <Project>{355eddef-917b-41af-a556-ba5b9fe88a84}</Project>
-      <Name>WebErp.Common</Name>
+    <ProjectReference Include="..\WebErp.Commmon\WebErp.Commmon.csproj">
+      <Project>{5c6efcf7-f5dd-4b7d-800e-f08e69c98410}</Project>
+      <Name>WebErp.Commmon</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebErp.Data\WebErp.Data.csproj">
       <Project>{75260ad6-b702-4610-935d-37239ddd2ac3}</Project>

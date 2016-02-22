@@ -205,6 +205,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -284,6 +285,24 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebErp.Commmon\WebErp.Commmon.csproj">
+      <Project>{5c6efcf7-f5dd-4b7d-800e-f08e69c98410}</Project>
+      <Name>WebErp.Commmon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebErp.Data\WebErp.Data.csproj">
+      <Project>{75260ad6-b702-4610-935d-37239ddd2ac3}</Project>
+      <Name>WebErp.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebErp.Models\WebErp.Models.csproj">
+      <Project>{ad84e5d0-79c1-46c1-831e-8b3cbfc044dd}</Project>
+      <Name>WebErp.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebErp.Services\WebErp.Services.csproj">
+      <Project>{648dac63-ce72-4875-8a4d-8e8e0c03e69c}</Project>
+      <Name>WebErp.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
