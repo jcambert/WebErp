@@ -10,6 +10,9 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using WebErp.Providers;
 using WebErp.Models;
+using Ninject;
+using WebErp.App_Start;
+using WebErp.Data.Infrastructure;
 
 namespace WebErp
 {
@@ -19,11 +22,20 @@ namespace WebErp
 
         public static string PublicClientId { get; private set; }
 
+        public ApplicationDbContext DbContext()
+        {
+           // var options = Kernel.Get<IDbContextOptions>();
+            return Kernel.Get<ApplicationDbContext>();
+        }
+
+        public IKernel Kernel = NinjectWebCommon.Bootstrapper.Kernel;
+
         // Pour plus d'informations sur la configuration de l'authentification, consultez http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configurer le contexte de base de données et le gestionnaire des utilisateurs pour utiliser une instance unique par demande
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            // app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext< ApplicationDbContext>(DbContext);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
             // Activer l'application pour utiliser un cookie afin de stocker les informations de l'utilisateur connecté

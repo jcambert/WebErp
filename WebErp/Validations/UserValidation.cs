@@ -8,8 +8,10 @@ using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using WebErp.Data.Infrastructure;
 using WebErp.Data.Validations;
 using WebErp.Models;
+using WebErp.Properties;
 
 namespace WebErp.Validations
 {
@@ -25,11 +27,11 @@ namespace WebErp.Validations
                 {
                     if (this.Users.Any<ApplicationUser>(u => string.Equals(u.UserName, user.UserName)))
                     {
-                        source.Add(new DbValidationError("User", string.Format(CultureInfo.CurrentCulture, IdentityResources.DuplicateUserName, new object[] { user.UserName })));
+                        source.Add(new DbValidationError("User", string.Format(CultureInfo.CurrentCulture, Resources.DuplicateUserName, new object[] { user.UserName })));
                     }
                     if (this.RequireUniqueEmail && this.Users.Any<ApplicationUser>(u => string.Equals(u.Email, user.Email)))
                     {
-                        source.Add(new DbValidationError("User", string.Format(CultureInfo.CurrentCulture, IdentityResources.DuplicateEmail, new object[] { user.Email })));
+                        source.Add(new DbValidationError("User", string.Format(CultureInfo.CurrentCulture, Resources.DuplicateEmail, new object[] { user.Email })));
                     }
                 }
                 else
@@ -37,7 +39,7 @@ namespace WebErp.Validations
                     IdentityRole<string, IdentityUserRole<string>> role = entityEntry.Entity as IdentityRole<string, IdentityUserRole<string>>;
                     if ((role != null) && this.Roles.Any<IdentityRole<string, IdentityUserRole<string>>>(r => string.Equals(r.Name, role.Name)))
                     {
-                        source.Add(new DbValidationError("Role", string.Format(CultureInfo.CurrentCulture, IdentityResources.RoleAlreadyExists, new object[] { role.Name })));
+                        source.Add(new DbValidationError("Role", string.Format(CultureInfo.CurrentCulture, Resources.RoleAlreadyExists, new object[] { role.Name })));
                     }
                 }
                 if (source.Any<DbValidationError>())
@@ -54,5 +56,10 @@ namespace WebErp.Validations
 
         [Inject]
         public IDbSet<ApplicationUser> Users { get; set; }
+
+        [Inject]
+        public DbContextOptions ContextOptions { get; set; }
+
+        public bool RequireUniqueEmail => ContextOptions.RequireUniqueEmail;
     }
 }

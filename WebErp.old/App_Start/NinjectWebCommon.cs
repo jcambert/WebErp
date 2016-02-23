@@ -10,31 +10,21 @@ namespace WebErp.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Extensions.Conventions;
-    using Data.Infrastructure;
-    using Data.Repositories;
-    using Commmon;
-    using System.Data.Entity;
-    using Data;
-    using Models;
-    using Data.Configurations;
-    public static class NinjectWebCommon
+
+    public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start()
+        public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
-
         }
-
-        public static Bootstrapper Bootstrapper => bootstrapper;
-
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -42,7 +32,7 @@ namespace WebErp.App_Start
         {
             bootstrapper.ShutDown();
         }
-
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -71,15 +61,6 @@ namespace WebErp.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-           kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
-            kernel.Bind<IDbContextOptions>().ToProvider<DbContextOptionsProvider>().InSingletonScope();
-            kernel.Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ => kernel.Get<IDbContextOptions>().InMemory == false).InRequestScope();
-            kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ => kernel.Get<IDbContextOptions>().InMemory == true).InRequestScope();
-            //kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>));
-            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
-            kernel.Bind(x =>x.FromThisAssembly().SelectAllClasses().WhichAreNotGeneric().InheritedFrom(typeof(IModelBaseConfiguration<>)).BindSingleInterface());
-            //kernel.Bind(typeof(IModelBaseConfiguration<>));
-        }
+        }        
     }
 }

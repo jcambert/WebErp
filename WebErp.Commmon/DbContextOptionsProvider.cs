@@ -13,18 +13,19 @@ namespace WebErp.Commmon
 {
     public class DbContextOptionsProvider : Provider<IDbContextOptions>
     {
+       
+
+        public DbContextOptionsProvider()
+        {
+         
+        }
         protected override IDbContextOptions CreateInstance(IContext context)
         {
-            Configuration rootCfg;
-            bool _inMemory;
-            if (HostingEnvironment.IsHosted)
-                rootCfg = WebConfigurationManager.OpenWebConfiguration(null);
-            else
-                rootCfg = ConfigurationManager.OpenExeConfiguration(null);
-
-            bool.TryParse(rootCfg.AppSettings.Settings[DbContextOptions.IN_MEMORY]?.Value, out _inMemory);
-            string _connectionName = rootCfg.ConnectionStrings.ConnectionStrings[DbContextOptions.CONNECTION_NAME]?.Name ?? DbContextOptions.CONNECTION_NAME;
-            return new DbContextOptions(_connectionName, _inMemory);
+            bool _inMemory, _uniqueEmail;
+            bool.TryParse(ConfigurationManager.AppSettings[DbContextOptions.IN_MEMORY], out _inMemory);
+            bool.TryParse(ConfigurationManager.AppSettings[DbContextOptions.REQUIRE_UNIQUE_EMAIL], out _uniqueEmail);
+            string _connectionName = ConfigurationManager.ConnectionStrings[DbContextOptions.CONNECTION_NAME]?.ConnectionString ?? DbContextOptions.CONNECTION_NAME;
+            return new DbContextOptions(_connectionName, _inMemory,_uniqueEmail);
         }
     }
 }

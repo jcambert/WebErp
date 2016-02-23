@@ -72,6 +72,7 @@
     <Compile Include="Infrastructure\IDbContextOptions.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="IocDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IModelBaseRepository.cs" />
     <Compile Include="Repositories\ModelBaseRepository.cs" />

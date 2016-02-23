@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using WebErp.Data;
 using WebErp.Data.Infrastructure;
 using Ninject;
+using WebErp.Data.Configurations;
 
 namespace WebErp.Models
 {
@@ -37,6 +38,7 @@ namespace WebErp.Models
 
     public class ApplicationDbContext : WebErpContext
     {
+        [Inject]
         public ApplicationDbContext(IDbContextOptions options) : base(options)
         {
             
@@ -45,7 +47,12 @@ namespace WebErp.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            Kernel.GetAll<IModelBaseConfiguration<>>
+            
+        }
+        public override void Initialize()
+        {
+            base.Initialize();
+            var tmp = Kernel.GetAll(typeof(IModelBaseConfiguration<>));
         }
 
         [Inject]
