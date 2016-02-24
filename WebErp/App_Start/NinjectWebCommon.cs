@@ -18,6 +18,9 @@ namespace WebErp.App_Start
     using Data;
     using Models;
     using Data.Configurations;
+    using Configurations;
+    using System.Linq;
+    using Data.Validations;
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -76,10 +79,11 @@ namespace WebErp.App_Start
             kernel.Bind<IDbContextOptions>().ToProvider<DbContextOptionsProvider>().InSingletonScope();
             kernel.Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ => kernel.Get<IDbContextOptions>().InMemory == false).InRequestScope();
             kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ => kernel.Get<IDbContextOptions>().InMemory == true).InRequestScope();
-            //kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>));
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
-            kernel.Bind(x =>x.FromThisAssembly().SelectAllClasses().WhichAreNotGeneric().InheritedFrom(typeof(IModelBaseConfiguration<>)).BindSingleInterface());
-            //kernel.Bind(typeof(IModelBaseConfiguration<>));
+            kernel.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom(typeof(IModelBaseConfiguration)).BindAllInterfaces());
+            kernel.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom(typeof(IModelBaseValidation)).BindAllInterfaces());
+
+
         }
     }
 }

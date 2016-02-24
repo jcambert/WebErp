@@ -12,15 +12,20 @@ using WebErp.Models;
 
 namespace WebErp.Configurations
 {
-    public class UserConfiguration : ModelBaseConfiguration<ApplicationUser>
+    public interface IUserConfiguration : IModelBaseConfiguration<ApplicationUser>
     {
-        public UserConfiguration(DbModelBuilder builder) : base(builder)
+
+    }
+    public class UserConfiguration : ModelBaseConfiguration<ApplicationUser>,IModelBaseConfiguration<ApplicationUser>
+    {
+        public UserConfiguration()
         {
 
         }
 
-        public override void ConfigureModel()
+        public override void ConfigureModel(DbModelBuilder builder)
         {
+            base.ConfigureModel(builder);
             Builder.ToTable("User");
             Builder.HasMany(u => u.Roles).WithRequired().HasForeignKey(ur => ur.UserId);
             Builder.HasMany(u => u.Claims).WithRequired().HasForeignKey(uc => uc.UserId);

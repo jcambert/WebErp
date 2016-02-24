@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace WebErp.Data.Validations
 {
+    
     public abstract class ModelBaseValidation<T> : IModelBaseValidation<T> where T : class
     {
-        public virtual void Initialize()
-        {
-            
-        }
+        
 
-        public abstract DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items);
+        public virtual DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
+        {
+            return new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
+        }
     }
 }

@@ -11,12 +11,13 @@ namespace WebErp.Data.Configurations
 {
     public class ArticleConfiguration : ModelBaseConfiguration<Article>
     {
-        public ArticleConfiguration(DbModelBuilder builder) : base(builder)
+        public ArticleConfiguration() 
         {
 
         }
-        public override void ConfigureModel()
+        public override void ConfigureModel(DbModelBuilder builder)
         {
+            base.ConfigureModel( builder);
             Builder.ToTable("Article");
             Builder.Property(a => a.Libelle).IsRequired().HasMaxLength(50);
             Builder.Property(a => a.Type).IsRequired();

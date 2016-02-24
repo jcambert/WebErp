@@ -11,13 +11,14 @@ namespace WebErp.Configurations
    
     public class UserLoginConfiguration : ModelBaseConfiguration<IdentityUserLogin<string>>
     {
-        public UserLoginConfiguration(DbModelBuilder builder) : base(builder)
+        public UserLoginConfiguration()
         {
 
         }
 
-        public override void ConfigureModel()
+        public override void ConfigureModel(DbModelBuilder builder)
         {
+            base.ConfigureModel(builder);
             Builder.HasKey(l => new { LoginProvider = l.LoginProvider, ProviderKey = l.ProviderKey, UserId = l.UserId }).ToTable("UserLogins");
         }
     }

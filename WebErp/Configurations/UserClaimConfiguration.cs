@@ -9,15 +9,16 @@ using WebErp.Data.Configurations;
 namespace WebErp.Configurations
 {
     
-    public class UserClaim : ModelBaseConfiguration<IdentityUserClaim<string>>
+    public class UserClaimConfiguration : ModelBaseConfiguration<IdentityUserClaim<string>>
     {
-        public UserClaim(DbModelBuilder builder) : base(builder)
+        public UserClaimConfiguration()
         {
 
         }
 
-        public override void ConfigureModel()
+        public override void ConfigureModel(DbModelBuilder builder)
         {
+            base.ConfigureModel(builder);
             Builder.ToTable("UserClaims");
         }
     }

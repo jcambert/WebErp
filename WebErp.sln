@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp", "WebErp\WebErp.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Commmon", "WebErp.Commmon\WebErp.Commmon.csproj", "{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Some.tests", "WebErp.Some.tests\WebErp.Some.tests.csproj", "{A8612BF0-A9EA-484D-BB07-670BC5A343AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,11 +55,16 @@ Global
 		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D8447377-73B6-4127-9659-346D1B13AD14} = {084BF53D-947B-4242-9668-867A96962DE8}
+		{A8612BF0-A9EA-484D-BB07-670BC5A343AB} = {084BF53D-947B-4242-9668-867A96962DE8}
 	EndGlobalSection
 EndGlobal

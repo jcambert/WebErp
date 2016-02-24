@@ -233,7 +233,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Configurations\RoleConfiguration.cs" />
-    <Compile Include="Configurations\UserClaim.cs" />
+    <Compile Include="Configurations\UserClaimConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="Configurations\UserLoginConfiguration.cs" />
     <Compile Include="Configurations\UserRoleConfiguration.cs" />
@@ -314,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Initializers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

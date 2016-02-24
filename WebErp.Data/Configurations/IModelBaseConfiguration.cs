@@ -1,9 +1,13 @@
 ﻿using Ninject;
+using System.Data.Entity;
 
 namespace WebErp.Data.Configurations
 {
-    public interface IModelBaseConfiguration<T>:IInitializable where T : class
+    public interface IModelBaseConfiguration
     {
-        void ConfigureModel();
+        void ConfigureModel(DbModelBuilder builder);
+    }
+    public interface IModelBaseConfiguration<T>:IModelBaseConfiguration where T : class
+    {
     }
 }

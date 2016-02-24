@@ -8,6 +8,11 @@ using WebErp.Data;
 using WebErp.Data.Infrastructure;
 using Ninject;
 using WebErp.Data.Configurations;
+using System.Linq;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using WebErp.Data.Validations;
 
 namespace WebErp.Models
 {
@@ -23,18 +28,6 @@ namespace WebErp.Models
         }
     }
 
-    /*public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
-        
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-    }*/
 
     public class ApplicationDbContext : WebErpContext
     {
@@ -47,12 +40,39 @@ namespace WebErp.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+            var configs = Kernel.GetAll(typeof(IModelBaseConfiguration)).ToList();
+            configs.ForEach(c => ((IModelBaseConfiguration)c).ConfigureModel(modelBuilder));
+
+        }
+
+        protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
+        {
+            var modeltype = entityEntry.Entity.GetType();
+            var validationType = typeof(IModelBaseValidation<>).MakeGenericType(modeltype);
+            var validations = Kernel.GetAll(validationType).ToList();
+            foreach (var validation in validations)
+            {
+                var v = validation as IModelBaseValidation;
+                var result = v.ValidateEntity(entityEntry, items);
+                if (result.ValidationErrors.Any())
+                    return result;
+            }
+            return base.ValidateEntity(entityEntry, items);
+
+                
         }
         public override void Initialize()
         {
             base.Initialize();
-            var tmp = Kernel.GetAll(typeof(IModelBaseConfiguration<>));
+            // var validations = Kernel.GetAll(typeof(IModelBaseValidation<ApplicationUser>)).ToList();
+
+            /*var modeltype = typeof(ApplicationUser);
+            var validationType = typeof(IModelBaseValidation<>).MakeGenericType(modeltype);
+            var validations = Kernel.GetAll(validationType).ToList();*/
+            
+            var initializer = Kernel.TryGet <System.Data.Entity.IDatabaseInitializer<ApplicationDbContext>> ();
+            if (initializer != null)
+                System.Data.Entity.Database.SetInitializer(initializer);
         }
 
         [Inject]

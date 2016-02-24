@@ -58,7 +58,7 @@ namespace WebErp.Validations
         public IDbSet<ApplicationUser> Users { get; set; }
 
         [Inject]
-        public DbContextOptions ContextOptions { get; set; }
+        public IDbContextOptions ContextOptions { get; set; }
 
         public bool RequireUniqueEmail => ContextOptions.RequireUniqueEmail;
     }

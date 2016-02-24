@@ -10,13 +10,14 @@ namespace WebErp.Configurations
 {
     public class UserRoleConfiguration : ModelBaseConfiguration<IdentityUserRole<string>>
     {
-        public UserRoleConfiguration(DbModelBuilder builder) : base(builder)
+        public UserRoleConfiguration()
         {
 
         }
 
-        public override void ConfigureModel()
+        public override void ConfigureModel(DbModelBuilder builder)
         {
+            base.ConfigureModel(builder);
             Builder.HasKey(r => new { UserId = r.UserId, RoleId = r.RoleId }).ToTable("UserRoles");
         }
     }

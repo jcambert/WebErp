@@ -25,7 +25,7 @@ namespace WebErp.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            new ArticleConfiguration(modelBuilder);
+            new ArticleConfiguration().ConfigureModel(modelBuilder);
             /*new UserConfiguration(modelBuilder);
             new RoleConfiguration(modelBuilder);
             new UserRoleConfiguration(modelBuilder);*/

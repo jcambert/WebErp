@@ -12,13 +12,14 @@ namespace WebErp.Configurations
 {
     public class RoleConfiguration : ModelBaseConfiguration<IdentityRole<string, IdentityUserRole<string>>>
     {
-        public RoleConfiguration(DbModelBuilder builder) : base(builder)
+        public RoleConfiguration()
         {
 
         }
 
-        public override void ConfigureModel()
+        public override void ConfigureModel(DbModelBuilder builder)
         {
+            base.ConfigureModel(builder);
             Builder.ToTable("Roles");
             IndexAttribute attribute2 = new IndexAttribute("RoleNameIndex")
             {
