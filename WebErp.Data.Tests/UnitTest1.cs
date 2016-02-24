@@ -6,7 +6,6 @@ using WebErp.Data.Repositories;
 using Ninject.Activation;
 using WebErp.Models;
 using System.Data.Entity;
-using WebErp.Commmon;
 
 namespace WebErp.Data.Tests
 {
@@ -61,7 +60,7 @@ namespace WebErp.Data.Tests
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
-            kernel.Bind<IDbContextOptions>().ToProvider<DbContextOptionsProvider>().InSingletonScope();
+            kernel.Bind<IDbContextOptions>().To<DbContextOptions>().InSingletonScope();
             kernel.Bind(typeof(IDbSet<>)).To(typeof(DbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory == false);
             kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory==true );
             kernel.Bind<WebErpContext>().ToSelf();

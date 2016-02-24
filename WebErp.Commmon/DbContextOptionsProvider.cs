@@ -11,7 +11,7 @@ using WebErp.Data.Infrastructure;
 
 namespace WebErp.Commmon
 {
-    public class DbContextOptionsProvider : Provider<IDbContextOptions>
+   /* public class DbContextOptionsProvider : Provider<IDbContextOptions>
     {
        
 
@@ -27,5 +27,5 @@ namespace WebErp.Commmon
             string _connectionName = ConfigurationManager.ConnectionStrings[DbContextOptions.CONNECTION_NAME]?.ConnectionString ?? DbContextOptions.CONNECTION_NAME;
             return new DbContextOptions(_connectionName, _inMemory,_uniqueEmail);
         }
-    }
+    }*/
 }
