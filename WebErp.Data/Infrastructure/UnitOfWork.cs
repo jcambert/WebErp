@@ -14,7 +14,7 @@ namespace WebErp.Data.Infrastructure
 
         }
 
-        public WebErpContext Context { get; private set; }
+        public IContext Context { get; private set; }
 
         [Inject]
         public IKernel Kernel { get; set; }
@@ -31,7 +31,7 @@ namespace WebErp.Data.Infrastructure
 
         public void Initialize()
         {
-            this.Context = Kernel.Get<WebErpContext>();
+            this.Context = Kernel.Get<IContext>();
         }
     }
 }

@@ -18,8 +18,7 @@ namespace WebErp.Data.Repositories
         
         public void Initialize()
         {
-            this.Context = Kernel.Get<WebErpContext>();
-            
+            this.Context = Kernel.Get<IContext>();
         }
 
         #region Properties
@@ -28,7 +27,7 @@ namespace WebErp.Data.Repositories
 
         
 
-        protected WebErpContext Context
+        protected IContext Context
         {
             get; private set;
         }
@@ -68,7 +67,7 @@ namespace WebErp.Data.Repositories
         public virtual void Add(T entity)
         {
             
-            //var dbEntityEntry = Context.Entry<T>(entity);
+            var dbEntityEntry = Context.Entry<T>(entity);
             Context.Set<T>().Add(entity);
         }
         public virtual void Edit(T entity)

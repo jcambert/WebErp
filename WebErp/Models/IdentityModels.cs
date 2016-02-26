@@ -13,11 +13,21 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using WebErp.Data.Validations;
+using WebErp.Data.Models;
+using System;
+using WebErp.Data.Repositories;
+using Ninject;
+using Ninject.Web.Common;
+using Ninject.Extensions.Conventions;
+using WebErp.Initializers;
+using Ninject.Modules;
+using Ninject.Extensions.Conventions.Syntax;
+using System.Data.Entity.Migrations;
 
 namespace WebErp.Models
 {
     // Vous pouvez ajouter des données de profil pour l'utilisateur en ajoutant d'autres propriétés à votre classe ApplicationUser, consultez http://go.microsoft.com/fwlink/?LinkID=317594 pour en savoir davantage.
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : User
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -29,8 +39,12 @@ namespace WebErp.Models
     }
 
 
-    public class ApplicationDbContext : WebErpContext
+    public class ApplicationDbContext : WebErpContext<ApplicationUser>
     {
+        public ApplicationDbContext():base()
+        {
+            //DbMigrationsConfiguration.AutomaticMigrationsEnabled = True;
+        }
         [Inject]
         public ApplicationDbContext(IDbContextOptions options) : base(options)
         {
@@ -39,10 +53,7 @@ namespace WebErp.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            var configs = Kernel.GetAll(typeof(IModelBaseConfiguration)).ToList();
-            configs.ForEach(c => ((IModelBaseConfiguration)c).ConfigureModel(modelBuilder));
-
+           
         }
 
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
@@ -72,10 +83,62 @@ namespace WebErp.Models
             
             var initializer = Kernel.TryGet <System.Data.Entity.IDatabaseInitializer<ApplicationDbContext>> ();
             if (initializer != null)
-                System.Data.Entity.Database.SetInitializer(initializer);
+            {
+                //initializer.InitializeDatabase(this);
+                Database.CreateIfNotExists();
+                Database.SetInitializer(initializer);
+            }
         }
 
-        [Inject]
-        public IKernel Kernel { get; set; }
+
+        public override IKernel Kernel
+        {
+            get
+            {
+                if(base.Kernel==null)
+                {
+                    return new StandardKernel(new ApplicationModules());
+                }
+                return base.Kernel;
+            }
+
+            set
+            {
+                base.Kernel = value;
+            }
+        }
+
+    }
+    
+    public class ApplicationModules : NinjectModule
+    {
+        public override void Load()
+        {
+            Bind<IUnitOfWork>().To<UnitOfWork>();
+            Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
+            Bind<IDbContextOptions>().To<DbContextOptions>().InSingletonScope();
+            Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == false).InRequestScope();
+            Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == true).InRequestScope();
+            Bind<IContext>().To<ApplicationDbContext>().InRequestScope();
+            Bind(typeof(IDatabaseInitializer<ApplicationDbContext>)).To(typeof(ApplicationDbInitializer)).When(_ => Kernel.Get<IDbContextOptions>().RecreateDatabase);
+
+            Bind<IModelConfiguration>(Kernel, typeof(Article));
+            Bind<IModelBaseValidation>(Kernel, typeof(Article));
+            //kernel.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom(typeof(IModelBaseConfiguration)).BindAllInterfaces());
+            //kernel.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom(typeof(IModelBaseValidation)).BindAllInterfaces());
+
+            var tmp = Kernel.GetAll<IModelConfiguration>().ToList();
+        }
+        private  void Bind<T>(IKernel kernel, params Type[] types)
+        {
+            var _types = types.ToList();
+            _types.Insert(0, typeof(ApplicationUser));
+            _types.ForEach(t =>
+            {
+                Action<IFromSyntax> a = x => x.FromAssemblyContaining(t).SelectAllClasses().InheritedFrom<T>().BindAllInterfaces();
+                kernel.Bind(a);
+            });
+
+        }
     }
 }

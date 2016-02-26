@@ -9,7 +9,7 @@ using WebErp.Data.Configurations;
 namespace WebErp.Configurations
 {
     
-    public class UserClaimConfiguration : ModelBaseConfiguration<IdentityUserClaim<string>>
+    /*public class UserClaimConfiguration : ModelConfiguration<IdentityUserClaim<string>>
     {
         public UserClaimConfiguration()
         {
@@ -21,5 +21,5 @@ namespace WebErp.Configurations
             base.ConfigureModel(builder);
             Builder.ToTable("UserClaims");
         }
-    }
+    }*/
 }

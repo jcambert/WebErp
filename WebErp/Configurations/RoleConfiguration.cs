@@ -10,7 +10,7 @@ using WebErp.Data.Configurations;
 
 namespace WebErp.Configurations
 {
-    public class RoleConfiguration : ModelBaseConfiguration<IdentityRole<string, IdentityUserRole<string>>>
+    /*public class RoleConfiguration : ModelConfiguration<IdentityRole<string, IdentityUserRole<string>>>
     {
         public RoleConfiguration()
         {
@@ -28,5 +28,5 @@ namespace WebErp.Configurations
             Builder.Property(r => r.Name).IsRequired().HasMaxLength(0x100).HasColumnAnnotation("Index", new IndexAnnotation(attribute2));
             Builder.HasMany(r => r.Users).WithRequired().HasForeignKey(ur => ur.RoleId);
         }
-    }
+    }*/
 }

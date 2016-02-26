@@ -12,5 +12,7 @@
             get;
         }
         bool RequireUniqueEmail { get;}
+
+        bool RecreateDatabase { get; }
     }
 }

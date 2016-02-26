@@ -12,11 +12,8 @@ using WebErp.Models;
 
 namespace WebErp.Configurations
 {
-    public interface IUserConfiguration : IModelBaseConfiguration<ApplicationUser>
-    {
 
-    }
-    public class UserConfiguration : ModelBaseConfiguration<ApplicationUser>,IModelBaseConfiguration<ApplicationUser>
+   /* public class UserConfiguration : ModelConfiguration<ApplicationUser>
     {
         public UserConfiguration()
         {
@@ -37,5 +34,5 @@ namespace WebErp.Configurations
             Builder.Property(u => u.UserName).IsRequired().HasMaxLength(0x100).HasColumnAnnotation("Index", new IndexAnnotation(indexAttribute));
             Builder.Property(u => u.Email).HasMaxLength(0x100);
         }
-    }
+    }*/
 }

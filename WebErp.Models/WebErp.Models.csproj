@@ -138,12 +138,20 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="Error.cs" />
+    <Compile Include="Matiere.cs" />
+    <Compile Include="ModeEpuisement.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeArticle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebCorp.Unite\Webcorp.unite.csproj">
+      <Project>{3a221492-33fb-4ec2-92bf-6ab0d2ce9ab9}</Project>
+      <Name>Webcorp.unite</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

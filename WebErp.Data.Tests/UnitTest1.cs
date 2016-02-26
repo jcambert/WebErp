@@ -6,7 +6,7 @@ using WebErp.Data.Repositories;
 using Ninject.Activation;
 using WebErp.Models;
 using System.Data.Entity;
-using WebErp.Commmon;
+using WebErp.Data.Models;
 
 namespace WebErp.Data.Tests
 {
@@ -61,10 +61,10 @@ namespace WebErp.Data.Tests
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
-            kernel.Bind<IDbContextOptions>().ToProvider<DbContextOptionsProvider>().InSingletonScope();
+            kernel.Bind<IDbContextOptions>().To<DbContextOptions>().InSingletonScope();
             kernel.Bind(typeof(IDbSet<>)).To(typeof(DbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory == false);
             kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory==true );
-            kernel.Bind<WebErpContext>().ToSelf();
+            kernel.Bind<IContext>().To<WebErpContext<User>>();
 
 
              
@@ -76,7 +76,7 @@ namespace WebErp.Data.Tests
         {
            
 
-            using (var ctx=kernel.Get<WebErpContext>())
+            using (var ctx=kernel.Get<IContext>())
             {
                 Article art = new Article() { ID ="1", Code = "XC10-3.0PET", Societe = 999, Libelle = "Tole Xc10 ep3 petit format" };
                 Assert.IsTrue(ctx.ArticleSet is FakeDbSet<Article>);
@@ -91,7 +91,7 @@ namespace WebErp.Data.Tests
         [TestMethod]
         public void TestCreateArticleInRepository()
         {
-            using (var ctx = kernel.Get<WebErpContext>())
+            using (var ctx = kernel.Get<IContext>())
             {
                 using (var repo = kernel.Get<IModelBaseRepository<Article>>())
                 {

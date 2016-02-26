@@ -9,7 +9,7 @@ using WebErp.Data.Configurations;
 namespace WebErp.Configurations
 {
    
-    public class UserLoginConfiguration : ModelBaseConfiguration<IdentityUserLogin<string>>
+   /* public class UserLoginConfiguration : ModelConfiguration<IdentityUserLogin<string>>
     {
         public UserLoginConfiguration()
         {
@@ -21,5 +21,5 @@ namespace WebErp.Configurations
             base.ConfigureModel(builder);
             Builder.HasKey(l => new { LoginProvider = l.LoginProvider, ProviderKey = l.ProviderKey, UserId = l.UserId }).ToTable("UserLogins");
         }
-    }
+    }*/
 }

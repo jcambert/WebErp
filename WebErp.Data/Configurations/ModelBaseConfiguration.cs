@@ -9,15 +9,27 @@ using WebErp.Models;
 
 namespace WebErp.Data.Configurations
 {
-    
-    public abstract class ModelBaseConfiguration<T> : IModelBaseConfiguration<T> where T : class
+    public abstract class ModelConfiguration<T> : IModelConfiguration<T> where T : class
     {
-        protected  EntityTypeConfiguration<T> Builder;
+        protected EntityTypeConfiguration<T> Builder;
+        public ModelConfiguration()
+        {
+
+        }
+
+        public virtual void ConfigureModel(DbModelBuilder builder)
+        {
+            this.Builder = builder.Entity<T>();
+        }
+    }
+    public abstract class ModelBaseConfiguration<T> : IModelBaseConfiguration<T> where T : class, IModelBase
+    {
+        protected EntityTypeConfiguration<T> Builder;
 
         // private readonly ModelBuilder Builder;
         public ModelBaseConfiguration()
         {
-            
+
         }
 
 
@@ -29,11 +41,8 @@ namespace WebErp.Data.Configurations
         public virtual void ConfigureModel(DbModelBuilder builder)
         {
             this.Builder = builder.Entity<T>();
-            if (typeof(IModelBase).IsAssignableFrom(typeof(T)))
-            {
-                var _builder = (EntityTypeConfiguration<IModelBase>)Convert.ChangeType(Builder, typeof(EntityTypeConfiguration<IModelBase>));
-                _builder.HasKey(e => new { e.Societe, e.Code });
-            }
+            Builder.HasKey(e => new { e.Societe, e.Code });
+
         }
     }
 }

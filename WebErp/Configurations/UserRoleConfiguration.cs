@@ -8,7 +8,7 @@ using WebErp.Data.Configurations;
 
 namespace WebErp.Configurations
 {
-    public class UserRoleConfiguration : ModelBaseConfiguration<IdentityUserRole<string>>
+  /*  public class UserRoleConfiguration : ModelConfiguration<IdentityUserRole<string>>
     {
         public UserRoleConfiguration()
         {
@@ -20,5 +20,5 @@ namespace WebErp.Configurations
             base.ConfigureModel(builder);
             Builder.HasKey(r => new { UserId = r.UserId, RoleId = r.RoleId }).ToTable("UserRoles");
         }
-    }
+    }*/
 }

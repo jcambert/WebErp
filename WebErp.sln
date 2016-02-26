@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.old", "WebErp.old\WebErp.old.csproj", "{A26B381A-7ABE-4957-8871-5685B410A4E9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Models", "WebErp.Models\WebErp.Models.csproj", "{AD84E5D0-79C1-46C1-831E-8B3CBFC044DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Data", "WebErp.Data\WebErp.Data.csproj", "{75260AD6-B702-4610-935D-37239DDD2AC3}"
@@ -17,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Services", "WebErp.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp", "WebErp\WebErp.csproj", "{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Commmon", "WebErp.Commmon\WebErp.Commmon.csproj", "{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebErp.Some.tests", "WebErp.Some.tests\WebErp.Some.tests.csproj", "{A8612BF0-A9EA-484D-BB07-670BC5A343AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webcorp.unite", "WebCorp.Unite\Webcorp.unite.csproj", "{3A221492-33FB-4EC2-92BF-6AB0D2CE9AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A26B381A-7ABE-4957-8871-5685B410A4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A26B381A-7ABE-4957-8871-5685B410A4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A26B381A-7ABE-4957-8871-5685B410A4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A26B381A-7ABE-4957-8871-5685B410A4E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD84E5D0-79C1-46C1-831E-8B3CBFC044DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD84E5D0-79C1-46C1-831E-8B3CBFC044DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD84E5D0-79C1-46C1-831E-8B3CBFC044DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,14 +45,14 @@ Global
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18A543C5-C4AA-4AB2-B6B1-A2DDD3B56F2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C6EFCF7-F5DD-4B7D-800E-F08E69C98410}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8612BF0-A9EA-484D-BB07-670BC5A343AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A221492-33FB-4EC2-92BF-6AB0D2CE9AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A221492-33FB-4EC2-92BF-6AB0D2CE9AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A221492-33FB-4EC2-92BF-6AB0D2CE9AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A221492-33FB-4EC2-92BF-6AB0D2CE9AB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

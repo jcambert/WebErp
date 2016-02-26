@@ -243,6 +243,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Initializers\ApplicationDbInitializer.cs" />
+    <Compile Include="Migrations\201602260746454_FirstCommit.cs" />
+    <Compile Include="Migrations\201602260746454_FirstCommit.Designer.cs">
+      <DependentUpon>201602260746454_FirstCommit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -314,7 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Initializers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -325,10 +330,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebErp.Commmon\WebErp.Commmon.csproj">
-      <Project>{5c6efcf7-f5dd-4b7d-800e-f08e69c98410}</Project>
-      <Name>WebErp.Commmon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WebErp.Data\WebErp.Data.csproj">
       <Project>{75260ad6-b702-4610-935d-37239ddd2ac3}</Project>
       <Name>WebErp.Data</Name>
@@ -343,6 +344,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602260746454_FirstCommit.resx">
+      <DependentUpon>201602260746454_FirstCommit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
