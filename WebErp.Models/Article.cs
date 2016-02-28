@@ -103,12 +103,12 @@ namespace WebErp.Models
         /// <summary>
         /// Couts pour la derniere fabrication
         /// </summary>
-        public IList<Cout> Couts { get; set; } = null;
+        //public IList<Cout> Couts { get; set; } = null;
 
         /// <summary>
         /// Format de tole si article tole
         /// </summary>
-        public Format Format { get; set; } = null;
+        //public Format Format { get; set; } = null;
 
         /// <summary>
         /// Masse lineaire si article profile
@@ -140,33 +140,33 @@ namespace WebErp.Models
         /// si article physique
         /// si article gerer en stock
         /// </summary>
-        public MouvementsStocks MouvementsStocks { get; set; } = null;
+        //public MouvementsStocks MouvementsStocks { get; set; } = null;
 
         /// <summary>
         /// Besoins soit de production soit d'achat
         /// </summary>
-        public Besoins Besoins { get; set; } = null;
+        //public Besoins Besoins { get; set; } = null;
 
         /// <summary>
         /// Nomenclature de production
         /// si article fabrique
         /// </summary>
-        public Nomenclatures Nomenclatures { get; set; } = null;
+        //public Nomenclatures Nomenclatures { get; set; } = null;
 
         /// <summary>
         /// Numero de nomenclature active
         /// </summary>
-        public int? NomenclatureVersion { get; set; } = null;
+        //public int? NomenclatureVersion { get; set; } = null;
 
         /// <summary>
         /// Tarif de ventes ou d'achat
         /// </summary>
-        public Tarifs Tarifs { get; set; } = null;
+        //public Tarifs Tarifs { get; set; } = null;
 
         /// <summary>
         /// Liste des productions si article fabriqué
         /// </summary>
-        public Productions Productions { get; set; } = null;
+        //public Productions Productions { get; set; } = null;
     }
 }
 

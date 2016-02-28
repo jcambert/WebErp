@@ -10,18 +10,8 @@ namespace WebErp.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Extensions.Conventions;
-    using Data.Infrastructure;
-    using Data.Repositories;
     using System.Data.Entity;
-    using Data;
     using Models;
-    using Data.Configurations;
-    using Configurations;
-    using System.Linq;
-    using Data.Validations;
-    using Ninject.Extensions.Conventions.Syntax;
-    using Initializers;
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

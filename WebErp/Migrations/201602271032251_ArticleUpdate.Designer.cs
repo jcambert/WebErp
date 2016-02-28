@@ -7,13 +7,13 @@ namespace WebErp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FirstCommit : IMigrationMetadata
+    public sealed partial class ArticleUpdate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstCommit));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ArticleUpdate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602260746454_FirstCommit"; }
+            get { return "201602271032251_ArticleUpdate"; }
         }
         
         string IMigrationMetadata.Source

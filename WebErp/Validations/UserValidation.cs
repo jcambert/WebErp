@@ -15,7 +15,7 @@ using WebErp.Properties;
 
 namespace WebErp.Validations
 {
-    public class UserValidation : ModelBaseValidation<ApplicationUser>
+   /* public class UserValidation : ModelBaseValidation<ApplicationUser>
     {
         public override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
@@ -61,5 +61,5 @@ namespace WebErp.Validations
         public IDbContextOptions ContextOptions { get; set; }
 
         public bool RequireUniqueEmail => ContextOptions.RequireUniqueEmail;
-    }
+    }*/
 }

@@ -7,8 +7,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebErp.Data.Configurations;
@@ -57,7 +55,7 @@ namespace WebErp.Data
             var configs = Kernel.GetAll(typeof(IModelConfiguration)).ToList();
             configs.ForEach(c => ((IModelConfiguration)c).ConfigureModel(modelBuilder));
 
-            //new ArticleConfiguration().ConfigureModel(modelBuilder);
+            new ArticleConfiguration().ConfigureModel(modelBuilder);
         }
 
         public virtual void Commit()

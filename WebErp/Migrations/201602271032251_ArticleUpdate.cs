@@ -3,7 +3,7 @@ namespace WebErp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstCommit : DbMigration
+    public partial class ArticleUpdate : DbMigration
     {
         public override void Up()
         {
@@ -15,9 +15,44 @@ namespace WebErp.Migrations
                         Code = c.String(nullable: false, maxLength: 128),
                         Libelle = c.String(nullable: false, maxLength: 50),
                         Type = c.Int(nullable: false),
-                        ID = c.String(),
+                        GererEnstock = c.Boolean(),
+                        ArticleFantome = c.Boolean(),
+                        AutoriseStockNegatif = c.Boolean(),
+                        GestionParLot = c.Boolean(),
+                        ModeEuipsement = c.Int(),
+                        StockMini = c.Int(),
+                        StockMaxi = c.Int(),
+                        QuantiteMiniReappro = c.Int(),
+                        QuantiteLotReappro = c.Int(),
+                        StockPhysique = c.Int(),
+                        StockReservee = c.Int(),
+                        StockAttendu = c.Int(),
+                        MassLinear_FValue = c.String(),
+                        AreaLinear_FValue = c.String(),
+                        AreaMass_FValue = c.String(),
+                        MassCurrency_FValue = c.String(),
+                        ID = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => new { t.Societe, t.Code });
+                .PrimaryKey(t => new { t.Societe, t.Code })
+                .ForeignKey("dbo.Matieres", t => t.ID)
+                .Index(t => t.ID);
+            
+            CreateTable(
+                "dbo.Matieres",
+                c => new
+                    {
+                        ID = c.String(nullable: false, maxLength: 128),
+                        Desnite_FValue = c.String(),
+                        Numero = c.String(),
+                        Symbole = c.String(),
+                        CodeNfa = c.String(),
+                        CodeUns = c.String(),
+                        CodeAstm = c.String(),
+                        CodeAisi = c.String(),
+                        Societe = c.Int(nullable: false),
+                        Code = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -95,17 +130,20 @@ namespace WebErp.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Article", "ID", "dbo.Matieres");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Article", new[] { "ID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Matieres");
             DropTable("dbo.Article");
         }
     }

@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using WebErp.Data;
 using WebErp.Data.Infrastructure;
@@ -16,13 +15,10 @@ using WebErp.Data.Validations;
 using WebErp.Data.Models;
 using System;
 using WebErp.Data.Repositories;
-using Ninject;
 using Ninject.Web.Common;
 using Ninject.Extensions.Conventions;
-using WebErp.Initializers;
 using Ninject.Modules;
 using Ninject.Extensions.Conventions.Syntax;
-using System.Data.Entity.Migrations;
 
 namespace WebErp.Models
 {
@@ -51,10 +47,6 @@ namespace WebErp.Models
             
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-           
-        }
 
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
@@ -81,13 +73,13 @@ namespace WebErp.Models
             var validationType = typeof(IModelBaseValidation<>).MakeGenericType(modeltype);
             var validations = Kernel.GetAll(validationType).ToList();*/
             
-            var initializer = Kernel.TryGet <System.Data.Entity.IDatabaseInitializer<ApplicationDbContext>> ();
+            /*var initializer = Kernel.TryGet <System.Data.Entity.IDatabaseInitializer<ApplicationDbContext>> ();
             if (initializer != null)
             {
-                //initializer.InitializeDatabase(this);
-                Database.CreateIfNotExists();
+                
+               Database.CreateIfNotExists();
                 Database.SetInitializer(initializer);
-            }
+            }*/
         }
 
 
@@ -120,7 +112,7 @@ namespace WebErp.Models
             Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == false).InRequestScope();
             Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == true).InRequestScope();
             Bind<IContext>().To<ApplicationDbContext>().InRequestScope();
-            Bind(typeof(IDatabaseInitializer<ApplicationDbContext>)).To(typeof(ApplicationDbInitializer)).When(_ => Kernel.Get<IDbContextOptions>().RecreateDatabase);
+            //Bind(typeof(IDatabaseInitializer<ApplicationDbContext>)).To(typeof(ApplicationDbInitializer)).When(_ => Kernel.Get<IDbContextOptions>().RecreateDatabase);
 
             Bind<IModelConfiguration>(Kernel, typeof(Article));
             Bind<IModelBaseValidation>(Kernel, typeof(Article));
