@@ -82,6 +82,10 @@ namespace WebErp.Models
             }*/
         }
 
+        internal static IDisposable Create()
+        {
+            return new ApplicationDbContext(new DbContextOptions());
+        }
 
         public override IKernel Kernel
         {
@@ -109,8 +113,8 @@ namespace WebErp.Models
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
             Bind<IDbContextOptions>().To<DbContextOptions>().InSingletonScope();
-            Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == false).InRequestScope();
-            Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == true).InRequestScope();
+            //Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == false).InRequestScope();
+            //Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ => Kernel.Get<IDbContextOptions>().InMemory == true).InRequestScope();
             Bind<IContext>().To<ApplicationDbContext>().InRequestScope();
             //Bind(typeof(IDatabaseInitializer<ApplicationDbContext>)).To(typeof(ApplicationDbInitializer)).When(_ => Kernel.Get<IDbContextOptions>().RecreateDatabase);
 

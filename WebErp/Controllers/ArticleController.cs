@@ -29,27 +29,36 @@ namespace WebErp.Controllers
         }
 
         [Route("First")]
-        public Article GetFirst()
+        public ApiResult<Article> GetFirst()
         {
-            return articles.First();
+            var l = from a in articles orderby a.Societe, a.Code select a;
+            return new ApiResult<Article>(l.First(), 0, l.Count());
         }
 
         [Route("Last")]
-        public Article GetLast()
+        public ApiResult<Article> GetLast()
         {
-            return articles.Last();
+            var l = from a in articles orderby a.Societe, a.Code select a;
+            return new ApiResult<Article>(l.Skip(l.Count()-1).First(), l.Count(), l.Count());
         }
 
         [Route("Next")]
-        public Article GetNext(int index)
+        public ApiResult< Article> GetNext(int index)
         {
-            return Next(index, articles);
+            Article result;
+            int newIndex;
+            Next(index, articles,out result,out newIndex);
+            return new ApiResult<Article>(result, newIndex,articles.Count());
         }
 
         [Route("Previous")]
-        public Article GetPrevious(int index)
+        public ApiResult<Article> GetPrevious(int index)
         {
-            return Previous(index, articles);
+            Article result;
+            int newIndex;
+            Previous(index, articles, out result, out newIndex);
+            return new ApiResult<Article>(result, newIndex, articles.Count());
+            
         }
 
         [Inject]
@@ -63,11 +72,19 @@ namespace WebErp.Controllers
             return index > 0;
         }
 
-        protected Article Previous(int index, IQueryable<Article> articles)
+        protected void Previous(int index, IQueryable<Article> articles, out Article article, out int newIndex)
         {
+            var l = from a in articles orderby a.Societe, a.Code select a;
             if (HasPrevious(index, articles))
-                return articles.ElementAt(--index);
-            return articles.First();
+            {
+                var tmp = index - 1;
+                article = l.Skip(tmp).First();
+                newIndex = tmp;
+                return;
+            }
+            article = l.First();
+            newIndex = index;
+            
         }
 
         protected bool HasNext(int index, IQueryable<Article> articles)
@@ -75,11 +92,18 @@ namespace WebErp.Controllers
             return (index + 1) < articles.Count();
         }
 
-        protected Article Next(int index, IQueryable<Article> articles)
+        protected void Next(int index, IQueryable<Article> articles,out Article article,out int newIndex)
         {
-            if (HasNext(index, articles))
-                return articles.ElementAt(++index);
-            return articles.Last();
+            
+            var l = from a in articles orderby a.Societe, a.Code select a;
+            if (HasNext(index, articles)) {
+                var tmp = index + 1;
+                article = l.Skip(tmp).First();
+                newIndex = tmp;
+                return;
+            }
+            article=l.Last();
+            newIndex = index;
         }
 
         public void Initialize()
@@ -98,14 +122,18 @@ namespace WebErp.Controllers
             }
         }
 
-        public class NavigationState<T>
+        public class ApiResult<T>
         {
-            public NavigationState(T result)
+            public ApiResult(T result,int index,int count)
             {
                 this.Result = result;
-
+                this.Index = index;
+                this.Count = count;
             }
-            T Result { get; set; }
+            public int Count { get; private set; }
+            public int Index { get; private set; }
+            public T Result { get; private set; }
+
         }
     }
 

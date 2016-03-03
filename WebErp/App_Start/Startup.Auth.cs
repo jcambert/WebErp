@@ -13,6 +13,8 @@ using WebErp.Models;
 using Ninject;
 using WebErp.App_Start;
 using WebErp.Data.Infrastructure;
+using WebErp.Data;
+using System.Web.Http;
 
 namespace WebErp
 {
@@ -24,8 +26,9 @@ namespace WebErp
 
         public ApplicationDbContext DbContext()
         {
+            //return GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IContext)) as ApplicationDbContext;
            // var options = Kernel.Get<IDbContextOptions>();
-            return Kernel.Get<ApplicationDbContext>();
+            return Kernel.Get<IContext>() as ApplicationDbContext;
         }
 
         public IKernel Kernel = NinjectWebCommon.Bootstrapper.Kernel;
@@ -35,7 +38,7 @@ namespace WebErp
         {
             // Configurer le contexte de base de données et le gestionnaire des utilisateurs pour utiliser une instance unique par demande
             // app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext< ApplicationDbContext>(DbContext);
+            app.CreatePerOwinContext(DbContext);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
             // Activer l'application pour utiliser un cookie afin de stocker les informations de l'utilisateur connecté
