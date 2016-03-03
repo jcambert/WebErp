@@ -15,6 +15,11 @@ namespace WebErp.Data.Configurations
             Builder.ToTable("Article");
             Builder.Property(a => a.Libelle).IsRequired().HasMaxLength(50);
             Builder.Property(a => a.Type).IsRequired();
+
+            //Builder.HasOptional(a => a.Matiere).WithMany();
+            //Builder.HasOptional(a => a.MassLinear).WithMany();
+            //Builder.HasOptional(a=>a.AreaLinear)
+
         }
     }
 }

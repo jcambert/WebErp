@@ -4,13 +4,12 @@ namespace WebErp.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebErp.Models.ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(WebErp.Models.ApplicationDbContext context)
@@ -27,9 +26,6 @@ namespace WebErp.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.ArticleSet.AddOrUpdate(new Article { Societe = 999, Code = "1234" });
-            base.Seed(context);
         }
     }
 }

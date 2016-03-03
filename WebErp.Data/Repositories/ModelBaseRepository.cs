@@ -85,5 +85,10 @@ namespace WebErp.Data.Repositories
         {
             
         }
+
+        public T ElementAt(int index)
+        {
+            return All.Skip(index).First();
+        }
     }
 }

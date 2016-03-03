@@ -3,7 +3,7 @@ namespace WebErp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ArticleUpdate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -27,32 +27,9 @@ namespace WebErp.Migrations
                         StockPhysique = c.Int(),
                         StockReservee = c.Int(),
                         StockAttendu = c.Int(),
-                        MassLinear_FValue = c.String(),
-                        AreaLinear_FValue = c.String(),
-                        AreaMass_FValue = c.String(),
-                        MassCurrency_FValue = c.String(),
-                        ID = c.String(maxLength: 128),
+                        ID = c.String(),
                     })
-                .PrimaryKey(t => new { t.Societe, t.Code })
-                .ForeignKey("dbo.Matieres", t => t.ID)
-                .Index(t => t.ID);
-            
-            CreateTable(
-                "dbo.Matieres",
-                c => new
-                    {
-                        ID = c.String(nullable: false, maxLength: 128),
-                        Desnite_FValue = c.String(),
-                        Numero = c.String(),
-                        Symbole = c.String(),
-                        CodeNfa = c.String(),
-                        CodeUns = c.String(),
-                        CodeAstm = c.String(),
-                        CodeAisi = c.String(),
-                        Societe = c.Int(nullable: false),
-                        Code = c.String(),
-                    })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => new { t.Societe, t.Code });
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -130,20 +107,17 @@ namespace WebErp.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Article", "ID", "dbo.Matieres");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Article", new[] { "ID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Matieres");
             DropTable("dbo.Article");
         }
     }

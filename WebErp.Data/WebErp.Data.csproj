@@ -88,6 +88,10 @@
     <Compile Include="WebErpContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebCorp.Unite\Webcorp.unite.csproj">
+      <Project>{3a221492-33fb-4ec2-92bf-6ab0d2ce9ab9}</Project>
+      <Name>Webcorp.unite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebErp.Models\WebErp.Models.csproj">
       <Project>{ad84e5d0-79c1-46c1-831e-8b3cbfc044dd}</Project>
       <Name>WebErp.Models</Name>

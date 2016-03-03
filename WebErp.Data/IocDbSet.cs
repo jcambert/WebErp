@@ -13,5 +13,10 @@ namespace WebErp.Data
         {
 
         }
+
+        public override T Add(T entity)
+        {
+            return base.Add(entity);
+        }
     }
 }

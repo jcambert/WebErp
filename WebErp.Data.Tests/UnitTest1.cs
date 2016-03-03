@@ -62,8 +62,8 @@ namespace WebErp.Data.Tests
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind(typeof(IModelBaseRepository<>)).To(typeof(ModelBaseRepository<>));
             kernel.Bind<IDbContextOptions>().To<DbContextOptions>().InSingletonScope();
-            kernel.Bind(typeof(IDbSet<>)).To(typeof(DbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory == false);
-            kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory==true );
+           // kernel.Bind(typeof(IDbSet<>)).To(typeof(IocDbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory == false);
+            //kernel.Bind(typeof(IDbSet<>)).To(typeof(FakeDbSet<>)).When(_ =>kernel.Get<IDbContextOptions>().InMemory==true );
             kernel.Bind<IContext>().To<WebErpContext<User>>();
 
 
@@ -78,8 +78,13 @@ namespace WebErp.Data.Tests
 
             using (var ctx=kernel.Get<IContext>())
             {
+                ctx.Database.ExecuteSqlCommand("TRUNCATE TABLE [Article]");
+                for (int i = 1; i <= 300; i++)
+                {
+                    Repository.Add(new Article { Societe = 999, Code = "Code" + i ,Libelle="Libelle "+i});
+                }
                 Article art = new Article() { ID ="1", Code = "XC10-3.0PET", Societe = 999, Libelle = "Tole Xc10 ep3 petit format" };
-                Assert.IsTrue(ctx.ArticleSet is FakeDbSet<Article>);
+                //Assert.IsTrue(ctx.ArticleSet is FakeDbSet<Article>);
                 ctx.ArticleSet.Add(art);
                 ctx.Commit();
                 

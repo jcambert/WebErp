@@ -239,9 +239,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602271032251_ArticleUpdate.cs" />
-    <Compile Include="Migrations\201602271032251_ArticleUpdate.Designer.cs">
-      <DependentUpon>201602271032251_ArticleUpdate.cs</DependentUpon>
+    <Compile Include="Ioc\NinjectHttpDependencyResolver.cs" />
+    <Compile Include="Migrations\201603031544254_Initial.cs" />
+    <Compile Include="Migrations\201603031544254_Initial.Designer.cs">
+      <DependentUpon>201603031544254_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -346,8 +347,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602271032251_ArticleUpdate.resx">
-      <DependentUpon>201602271032251_ArticleUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603031544254_Initial.resx">
+      <DependentUpon>201603031544254_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

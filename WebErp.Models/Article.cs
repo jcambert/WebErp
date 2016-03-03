@@ -25,7 +25,7 @@ namespace WebErp.Models
         /// Matiere de l'article
         /// Peut etre null si article non physique
         /// </summary>
-        public Matiere Matiere { get; set; } = null;
+        //public Matiere Matiere { get; set; } = null;
 
         /// <summary>
         /// Article gerer en stock ou non
@@ -113,27 +113,27 @@ namespace WebErp.Models
         /// <summary>
         /// Masse lineaire si article profile
         /// </summary>
-        public MassLinear MassLinear { get; set; } = null;
+        //public MassLinear MassLinear { get; set; } = null;
 
         /// <summary>
         /// Aire lineaire si article profile
         /// </summary>
-        public AreaLinear AreaLinear { get; set; } = null;
+        //public AreaLinear AreaLinear { get; set; } = null;
 
         /// <summary>
         /// Aire massique si article profile
         /// </summary>
-        public AreaMass AreaMass { get; set; } = null;
+        //public AreaMass AreaMass { get; set; } = null;
 
         /// <summary>
         /// Prix au kilo peut venir du dernier achat!?
         /// </summary>
-        public MassCurrency MassCurrency { get; set; } = null;
+        //public MassCurrency MassCurrency { get; set; } = null;
 
         /// <summary>
         /// Cout lineaire si article profile
         /// </summary>
-        public Currency CostLinear => MassLinear* MassCurrency;
+        //public Currency CostLinear => MassLinear* MassCurrency;
 
         /// <summary>
         /// Mouvement de stock 

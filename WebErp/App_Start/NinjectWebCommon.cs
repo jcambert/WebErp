@@ -12,6 +12,8 @@ namespace WebErp.App_Start
     using Ninject.Web.Common;
     using System.Data.Entity;
     using Models;
+    using System.Web.Http;
+    using Ioc;
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -50,6 +52,10 @@ namespace WebErp.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                // Install our Ninject-based IDependencyResolver into the Web API config
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
                 return kernel;
             }
             catch

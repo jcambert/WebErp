@@ -75,7 +75,7 @@ namespace WebErp.Data
 
         IDbSet<TEntity> IContext.Set<TEntity>()
         {
-            return base.Set<TEntity>() as IDbSet<TEntity>;
+            return base.Set<TEntity>();// as IDbSet<TEntity>;
         }
 
         
@@ -87,14 +87,14 @@ namespace WebErp.Data
         }
 
         #region Entity Sets
-        [Inject]
+        //[Inject]
         public virtual IDbSet<Article> ArticleSet { get; set; }
 
-        [Inject]
-        public override IDbSet<IdentityRole> Roles { get; set; }
+       // [Inject]
+        //public override IDbSet<IdentityRole> Roles { get; set; }
 
-        [Inject]
-        public override IDbSet<TUser> Users { get; set; }
+        //[Inject]
+        //public override IDbSet<TUser> Users { get; set; }
         #endregion
     }
 }
