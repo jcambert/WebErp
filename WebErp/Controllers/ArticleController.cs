@@ -14,7 +14,7 @@ namespace WebErp.Controllers
     [RoutePrefix("api/Article")]
     public class ArticleController : ApiController, IInitializable
     {
-        IQueryable<Article> articles;
+        //IQueryable<Article> articles;
         public ArticleController()
         {
 
@@ -25,21 +25,25 @@ namespace WebErp.Controllers
         // GET api/values
         public IQueryable<Article> Get()
         {
-            return articles;
+            return Repository.All;
         }
 
         [Route("First")]
         public ApiResult<Article> GetFirst()
         {
-            var l = from a in articles orderby a.Societe, a.Code select a;
+            var l = from a in Repository.All orderby a.Societe, a.Code select a;
+            if (l.Count() == 0)
+                return new ApiResult<Article>(null, 0, 0);
             return new ApiResult<Article>(l.First(), 0, l.Count());
         }
 
         [Route("Last")]
         public ApiResult<Article> GetLast()
         {
-            var l = from a in articles orderby a.Societe, a.Code select a;
-            return new ApiResult<Article>(l.Skip(l.Count()-1).First(), l.Count(), l.Count());
+            var l = from a in Repository.All orderby a.Societe, a.Code select a;
+            if (l.Count() == 0)
+                return new ApiResult<Article>(null, 0, 0);
+            return new ApiResult<Article>(l.AsEnumerable().Last(), l.Count()-1, l.Count());
         }
 
         [Route("Next")]
@@ -47,6 +51,7 @@ namespace WebErp.Controllers
         {
             Article result;
             int newIndex;
+            var articles = Repository.All;
             Next(index, articles,out result,out newIndex);
             return new ApiResult<Article>(result, newIndex,articles.Count());
         }
@@ -56,6 +61,7 @@ namespace WebErp.Controllers
         {
             Article result;
             int newIndex;
+            var articles = Repository.All;
             Previous(index, articles, out result, out newIndex);
             return new ApiResult<Article>(result, newIndex, articles.Count());
             
@@ -89,31 +95,31 @@ namespace WebErp.Controllers
 
         protected bool HasNext(int index, IQueryable<Article> articles)
         {
-            return (index + 1) < articles.Count();
+            return (index ) < articles.Count();
         }
 
         protected void Next(int index, IQueryable<Article> articles,out Article article,out int newIndex)
         {
-            
-            var l = from a in articles orderby a.Societe, a.Code select a;
+           
+            var l = from a in Repository.All orderby a.Societe, a.Code select a;
             if (HasNext(index, articles)) {
                 var tmp = index + 1;
-                article = l.Skip(tmp).First();
+                article = l.Skip(index).First();
                 newIndex = tmp;
                 return;
             }
-            article=l.Last();
+            article = l.AsEnumerable().Last<Article>();// Skip(l.Count() -1).First();
             newIndex = index;
         }
 
         public void Initialize()
         {
-            articles = Repository.All;
+            var articles = Repository.All;
             if (articles.Count() == 0) {
                 var tmp = new List<Article>();
                 for (int i = 1; i <= 300; i++)
                 {
-                    Repository.Add(new Article { Societe = 999, Code = "Code" + i });
+                    Context.ArticleSet.Add(new Article { Societe = 999, Code = "Code" + i,Libelle="Libelle "+i });
                 }
                 
                 Context.Commit();
