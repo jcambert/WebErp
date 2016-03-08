@@ -103,9 +103,9 @@ namespace WebErp.Models
                 base.Kernel = value;
             }
         }
-
+        
     }
-    
+
     public class ApplicationModules : NinjectModule
     {
         public override void Load()

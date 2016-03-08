@@ -18,7 +18,7 @@ namespace WebErp.Data
 {
     public interface IContext:IDisposable
     {
-        IDbSet<Article> ArticleSet { get; set; }
+        IDbSet<Article> Articles { get; set; }
 
         DbChangeTracker ChangeTracker { get; }
         DbContextConfiguration Configuration { get; }
@@ -88,7 +88,7 @@ namespace WebErp.Data
 
         #region Entity Sets
         //[Inject]
-        public virtual IDbSet<Article> ArticleSet { get; set; }
+        public virtual IDbSet<Article> Articles { get; set; }
 
        // [Inject]
         //public override IDbSet<IdentityRole> Roles { get; set; }

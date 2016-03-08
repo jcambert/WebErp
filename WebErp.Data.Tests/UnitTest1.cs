@@ -81,7 +81,7 @@ namespace WebErp.Data.Tests
                 ctx.Database.ExecuteSqlCommand("TRUNCATE TABLE [Article]");
                 for (int i = 1; i <= 300; i++)
                 {
-                    ctx.ArticleSet.Add(new Article { Societe = 999, Code = "Code" + i ,Libelle="Libelle "+i});
+                    ctx.Articles.Add(new Article { Societe = 999, Code = "Code" + i ,Libelle="Libelle "+i});
                 }
                 //Article art = new Article() { ID ="1", Code = "XC10-3.0PET", Societe = 999, Libelle = "Tole Xc10 ep3 petit format" };
                 //Assert.IsTrue(ctx.ArticleSet is FakeDbSet<Article>);

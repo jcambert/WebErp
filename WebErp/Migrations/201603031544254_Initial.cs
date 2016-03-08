@@ -5,6 +5,7 @@ namespace WebErp.Migrations
     
     public partial class Initial : DbMigration
     {
+        
         public override void Up()
         {
             CreateTable(
