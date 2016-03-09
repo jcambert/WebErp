@@ -20,5 +20,6 @@ namespace WebErp.Data.Repositories
         void Delete(T entity);
         void Edit(T entity);
         T ElementAt(int index);
+        int Count();
     }
 }

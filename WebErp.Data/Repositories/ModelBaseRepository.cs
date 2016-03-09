@@ -90,5 +90,10 @@ namespace WebErp.Data.Repositories
         {
             return All.Skip(index).First();
         }
+
+        public int Count()
+        {
+            return All.Count();
+        }
     }
 }
