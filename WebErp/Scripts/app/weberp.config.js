@@ -24,7 +24,7 @@
     })());
 
     app.constant('Partials', (function () {
-        var partial_dir = 'partials/';
+        var partial_dir = '/Views/Partials/';
         var ext = '.partial.html';
         return {
             BASE_DIR: partial_dir,

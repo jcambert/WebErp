@@ -18,10 +18,10 @@ using WebErp.Extensions;
 namespace WebErp.Controllers
 {
     [RoutePrefix("api/Article")]
-    public class ArticleController : WebErpApiController<Article>
+    public class ApiArticleController : WebErpApiController<Article>
     {
         //IQueryable<Article> articles;
-        public ArticleController()
+        public ApiArticleController()
         {
 
 

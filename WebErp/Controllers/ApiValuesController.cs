@@ -7,8 +7,9 @@ using System.Web.Http;
 
 namespace WebErp.Controllers
 {
+    [RoutePrefix("api/Values")]
     [Authorize]
-    public class ValuesController : ApiController
+    public class ApiValuesController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
