@@ -351,8 +351,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Partials\dashboard.partial.html" />
-    <Content Include="Views\Partials\home.partial.html" />
+    <Content Include="Views\Home\Dashboard.html" />
+    <Content Include="Views\Home\Home.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -376,6 +376,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Configurations\" />
     <Folder Include="Initializers\" />
+    <Folder Include="Views\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

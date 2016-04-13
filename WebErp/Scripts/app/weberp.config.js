@@ -24,8 +24,8 @@
     })());
 
     app.constant('Partials', (function () {
-        var partial_dir = '/Views/Partials/';
-        var ext = '.partial.html';
+        var partial_dir = '/Home/';
+        var ext = '';//'.partial.html';
         return {
             BASE_DIR: partial_dir,
             DASHBOARD: partial_dir + 'dashboard' + ext,
@@ -38,7 +38,7 @@
         }
     })());
 
-    app.config(['$stateProvider', '$urlRouterProvider', '$logProvider','$injector', 'Partials', function ($stateProvider, $urlRouterProvider, $log,$injector, $partials) {
+    app.config(['$locationProvider','$stateProvider', '$urlRouterProvider', '$logProvider','$injector', 'Partials', function ($locationProvider,$stateProvider, $urlRouterProvider, $log,$injector, $partials) {
         $log.debugEnabled(true);
 
         if ($injector.has('$translateProvider')) {
@@ -61,6 +61,8 @@
                 templateUrl: $partials.HOME
             });
            
+
+        $locationProvider.html5Mode(false).hashPrefix('!');
 
         console.info('Application is configured');
     }]);
