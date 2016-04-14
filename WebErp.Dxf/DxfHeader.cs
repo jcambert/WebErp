@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf
 {
-    internal class DxfHeader
+    public class DxfHeader
     {
+        internal DxfHeader()
+        {
+
+        }
         [Header("$ACADMAINTVER")]
         public int? MaintenanceVersionNumber { get; set; }
 

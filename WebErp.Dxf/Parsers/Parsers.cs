@@ -5,7 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
+
 namespace WebErp.Dxf.Parsers
 {
 
@@ -45,33 +46,14 @@ namespace WebErp.Dxf.Parsers
 
     internal abstract class FieldSectionParser<TTYPE,T> : SectionParser where T:NameAttribute
     {
-        private readonly Dictionary<string, PropertyInfo> _fields;
+        
         public FieldSectionParser(Parser parser,DxfDocument doc):base(parser,doc)
         {
-            this._fields = new Dictionary<string, PropertyInfo>();
-            Initialize();
         }
 
-        private void Initialize()
-        {
-            Type header = typeof(TTYPE);// Document.Header.GetType();
-            foreach (PropertyInfo info in header.GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (info.CanWrite && info.CanRead)
-                {
-                    object[] attrs = info.GetCustomAttributes(true);
-                    foreach (object attr in attrs)
-                    {
-                        T casted = attr as T;
-                        if (casted != null)
-                        {
-                            _fields[casted.Name] = info;
-                        }
-                    }
-                }
-            }
-        }
-        public Dictionary<string, PropertyInfo> Fields => _fields;
+
+        public Dictionary<string, PropertyInfo> Fields => FieldSectionProvider.GetFields<TTYPE, T>();
+       
     }
 
     internal abstract class EntitySectionParser<T>:SectionParser where T : EntityAttribute

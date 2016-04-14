@@ -75,7 +75,7 @@ namespace WebErp.Dxf.Parsers
                 }
                 reader.ReadDXFEntry(out groupCode, out value);
             }
-
+            reader.Close();
             return doc;
         }
     }

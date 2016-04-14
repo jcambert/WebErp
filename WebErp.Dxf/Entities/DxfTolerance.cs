@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("TOLERANCE")]
-    internal class DXFTolerance : DxfEntity
+    public class DXFTolerance : DxfEntity
     {
+        private readonly DxfPoint insertion ;
+        private readonly DxfPoint extrusion ;
+        private readonly DxfPoint direction ;
+        internal DXFTolerance():base()
+        {
+            insertion = new DxfPoint();
+            extrusion = new DxfPoint();
+            direction = new DxfPoint();
+        }
         public string DimensionStyle { get; set; }
-        private DxfPoint insertion = new DxfPoint();
-        public DxfPoint InsertionPoint { get { return insertion; } }
-        private DxfPoint extrusion = new DxfPoint();
-        public DxfPoint ExtrusionDirection { get { return extrusion; } }
-        private DxfPoint direction = new DxfPoint();
-        public DxfPoint Direction { get { return direction; } }
+        
+        public DxfPoint InsertionPoint=> insertion; 
+        
+        public DxfPoint ExtrusionDirection => extrusion; 
+        
+        public DxfPoint Direction =>direction; 
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

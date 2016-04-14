@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfBlock : DxfEntity
+    public class DxfBlock : DxfEntity
     {
         private readonly DxfPoint basePoint ;
-        public DxfBlock()
+        internal DxfBlock():base()
         {
             basePoint = new DxfPoint();
         }
@@ -20,7 +20,7 @@ namespace WebErp.Dxf
 
         public string XRef { get; set; }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

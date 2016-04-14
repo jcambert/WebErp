@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebErp.Dxf.Attributes;
 using WebErp.Dxf.Parsers;
-using WebErp.Dxf.Parsers.Attributes;
 
 namespace WebErp.Dxf
 {
-    internal class DxfTables
+    public class DxfTables
     {
 
         private readonly List<DxfAppIDRecord> appids ;
@@ -20,7 +20,7 @@ namespace WebErp.Dxf
         private readonly List<DxfViewRecord> views ;
         private readonly List<DxfVPortRecord> vports;
 
-        public DxfTables()
+        internal DxfTables()
         {
             appids = new List<DxfAppIDRecord>();
             blocks = new List<DxfBlockRecord>();

@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    class DxfStyleRecord : DxfRecord
+    public class DxfStyleRecord : DxfRecord
     {
+        internal DxfStyleRecord():base()
+        {
+
+        }
         public string StyleName { get; set; }
         public double FixedHeight { get; set; }
         public double WidthFactor { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
@@ -54,7 +54,7 @@ namespace WebErp.Dxf.Entities
         private DxfPoint extrusion = new DxfPoint();
         public DxfPoint ExtrusionDirection { get { return extrusion; } }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

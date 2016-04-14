@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebErp.Dxf.Parsers.Attributes
+namespace WebErp.Dxf.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
     internal class TableAttribute : Attribute

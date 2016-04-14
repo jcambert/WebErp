@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("3DFACE")]
-    internal class DXF3DFace : DxfEntity
+    public class DXF3DFace : DxfEntity
     {
         private DxfPoint[] corners = new DxfPoint[] { new DxfPoint(), new DxfPoint(), new DxfPoint() };
         public DxfPoint[] Corners => corners;
@@ -24,7 +24,7 @@ namespace WebErp.Dxf.Entities
 
         public FlagsEnum Flags { get; set; }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             if (groupcode >= 10 && groupcode <= 33)

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("VERTEX")]
-    internal class DXFVertex : DxfEntity
+    public class DXFVertex : DxfEntity
     {
-        private DxfPoint location = new DxfPoint();
-        public DxfPoint Location { get { return location; } }
+        private readonly DxfPoint location ;
+        internal DXFVertex():base()
+        {
+            location = new DxfPoint();
+        }
+
+        public DxfPoint Location=> location; 
         public double StartWidth { get; set; }
         public double EndWidth { get; set; }
         public double Buldge { get; set; }
@@ -36,7 +41,7 @@ namespace WebErp.Dxf.Entities
 
         public double CurveFitTangentDirection { get; set; }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

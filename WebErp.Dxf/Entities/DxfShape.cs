@@ -3,25 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("SHAPE")]
-    internal class DXFShape : DxfEntity
+    public class DXFShape : DxfEntity
     {
+        private readonly DxfPoint insertion ;
+        private readonly DxfPoint extrusion ;
+        public DXFShape()
+        {
+            insertion = new DxfPoint();
+            extrusion = new DxfPoint();
+        }
         public double Thickness { get; set; }
-        private DxfPoint insertion = new DxfPoint();
-        public DxfPoint InsertionPoint { get { return insertion; } }
+       
+        public DxfPoint InsertionPoint => insertion;
         public double Size { get; set; }
         public string ShapeName { get; set; }
         public double RotationAngle { get; set; }
         public double RelativeXScale { get; set; }
         public double ObliqueAngle { get; set; }
-        private DxfPoint extrusion = new DxfPoint();
-        public DxfPoint ExtrusionDirection { get { return extrusion; } }
+       
+        public DxfPoint ExtrusionDirection => extrusion;
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

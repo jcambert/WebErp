@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfLineTypeRecord:DxfRecord
+    public class DxfLineTypeRecord:DxfRecord
     {
+        internal DxfLineTypeRecord()
+        {
+
+        }
         public string LineTypeName { get; set; }
         public string Description { get; set; }
         public int AlignmentCode { get; set; }
@@ -23,6 +27,10 @@ namespace WebErp.Dxf
 
         public class LineTypeElement
         {
+            internal LineTypeElement()
+            {
+
+            }
             public double Length { get; set; }
             public ElementFlags Flags { get; set; }
             public int? ShapeNumber { get; set; }

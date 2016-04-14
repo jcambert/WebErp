@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("RAY")]
-    internal class DXFRay : DxfEntity
+    public class DXFRay : DxfEntity
     {
         private DxfPoint startpoint = new DxfPoint();
         public DxfPoint Start { get { return startpoint; } }
@@ -16,7 +16,7 @@ namespace WebErp.Dxf.Entities
         private DxfPoint direction = new DxfPoint();
         public DxfPoint Direction { get { return direction; } }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)
@@ -44,7 +44,7 @@ namespace WebErp.Dxf.Entities
     }
 
     [Entity("XLINE")]
-    internal class DxfXLine : DXFRay
+    public class DxfXLine : DXFRay
     {
     }
 }

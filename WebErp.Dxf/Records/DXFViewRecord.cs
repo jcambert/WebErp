@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfViewRecord : DxfRecord
+    public class DxfViewRecord : DxfRecord
     {
         private readonly DxfPoint center ;
         private readonly DxfPoint direction;
         private readonly DxfPoint target ;
 
-        public DxfViewRecord()
+        internal DxfViewRecord():base()
         {
             center = new DxfPoint();
             direction = new DxfPoint();

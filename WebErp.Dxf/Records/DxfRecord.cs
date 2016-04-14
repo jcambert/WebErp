@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfRecord
+    public class DxfRecord
     {
         private readonly List<string> classhierarchy;
-        public DxfRecord()
+        internal DxfRecord()
         {
             classhierarchy = new List<string>();
         }

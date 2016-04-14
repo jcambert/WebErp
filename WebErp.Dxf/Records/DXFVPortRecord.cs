@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfVPortRecord : DxfRecord
+    public class DxfVPortRecord : DxfRecord
     {
         private readonly DxfPoint lowerleft;
         private readonly DxfPoint upperright;
@@ -16,7 +16,7 @@ namespace WebErp.Dxf
         private readonly DxfPoint gridspacing;
         private readonly DxfPoint direction;
         private readonly DxfPoint target;
-        public DxfVPortRecord()
+        internal DxfVPortRecord():base()
         {
             lowerleft = new DxfPoint();
             upperright = new DxfPoint();

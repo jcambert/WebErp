@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebErp.Dxf.Parsers.Attributes
+namespace WebErp.Dxf.Attributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
     internal class HeaderAttribute : NameAttribute

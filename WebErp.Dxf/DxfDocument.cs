@@ -12,13 +12,15 @@ namespace WebErp.Dxf
 {
     public sealed class DxfDocument
     {
+        //public const string START_GROUP = "0";
         public const string SECTION = "SECTION";
         public const string ENDSECTION = "ENDSEC";
         public const string TABLE = "TABLE";
         public const string ENDTABLE = "ENDTAB";
-
+        public const string END = "EOF";
 
         public const int START_GROUP_CODE = 0;
+
 
         private readonly DxfHeader _header;
         private readonly DxfTables _tables ;
@@ -35,24 +37,30 @@ namespace WebErp.Dxf
             _entities = new List<DxfEntity>();
         }
 
-        internal DxfHeader Header => _header;   
+        public DxfHeader Header => _header;   
 
-        internal DxfTables Tables => _tables;
+        public DxfTables Tables => _tables;
 
-        internal List<DxfClass> Classes => _classes;
+        public List<DxfClass> Classes => _classes;
 
-        internal List<DxfBlock> Blocks => _blocks;
+        public List<DxfBlock> Blocks => _blocks;
 
-        internal List<DxfEntity> Entities => _entities;
+        public List<DxfEntity> Entities => _entities;
+
+        public string Filename { get; internal set; }
 
         public static DxfDocument Load(string filename)
         {
             Contract.Requires(!filename.IsNullOrEmpty(), "File name cannot be null nor empty");
             FileStream stream = new FileStream(filename,FileMode.Open);
-            return Load(stream);
+            
+            var doc= Load(stream);
+            doc.Filename = filename;
+            stream.Close();
+            return doc;
         }
 
-        public static DxfDocument Load(Stream file)
+        internal static DxfDocument Load(Stream file)
         {
             Contract.Requires(file.IsNotNull(), "File as stream cannot be null");
 

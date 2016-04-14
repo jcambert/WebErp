@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("INSERT")]
-    internal class DxfInsert : DxfEntity
+    public class DxfInsert : DxfEntity
     {
         public string BlockName { get; set; }
         private DxfPoint insertionPoint = new DxfPoint();
@@ -19,7 +19,7 @@ namespace WebErp.Dxf.Entities
         private DxfPoint extrusionDirection = new DxfPoint();
         public DxfPoint ExtrusionDirection { get { return extrusionDirection; } }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

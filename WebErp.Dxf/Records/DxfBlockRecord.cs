@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfBlockRecord : DxfRecord
+    public class DxfBlockRecord : DxfRecord
     {
+        internal DxfBlockRecord():base()
+        {
+
+        }
         public string BlockName { get; set; }
     }
 }

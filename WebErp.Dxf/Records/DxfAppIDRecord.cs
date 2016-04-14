@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebErp.Dxf
 {
-    internal class DxfAppIDRecord:DxfRecord
+    public class DxfAppIDRecord:DxfRecord
     {
+        internal DxfAppIDRecord():base()
+        {
+
+        }
         public string ApplicationName { get; set; }
     }
 

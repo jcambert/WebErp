@@ -7,7 +7,7 @@ using WebErp.Dxf.Parsers;
 
 namespace WebErp.Dxf
 {
-    internal class DxfEntity:ISectionParser
+    public class DxfEntity
     {
         private readonly List<string> classhierarchy ;
         private readonly List<DxfEntity> children ;
@@ -32,7 +32,7 @@ namespace WebErp.Dxf
         
         public List<DxfEntity> Children => children;
 
-        public virtual void Parse(int groupcode, string value)
+        internal virtual void Parse(int groupcode, string value)
         {
             switch (groupcode)
             {

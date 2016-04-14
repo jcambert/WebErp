@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
-    internal class DxfGenericEntity : DxfEntity
+    public class DxfGenericEntity : DxfEntity
     {
         public class Entry
         {
@@ -27,7 +27,7 @@ namespace WebErp.Dxf.Entities
         private List<Entry> entries = new List<Entry>();
         public List<Entry> Entries { get { return entries; } }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             Entries.Add(new Entry(groupcode, value));

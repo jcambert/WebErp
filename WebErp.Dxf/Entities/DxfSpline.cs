@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("SPLINE")]
-    internal class DXFSpline : DxfEntity
+    public class DXFSpline : DxfEntity
     {
-        private DxfPoint normal = new DxfPoint();
-        public DxfPoint Normal { get { return normal; } }
+        private readonly DxfPoint normal ;
+        private readonly DxfPoint starttangent;
+        private readonly DxfPoint endtangent ;
+        private readonly List<double> knotvalues ;
+        private readonly List<DxfPoint> controlpoints ;
+        private readonly List<DxfPoint> fitpoints ;
+        public DXFSpline():base()
+        {
+            normal = new DxfPoint();
+            starttangent = new DxfPoint();
+            endtangent = new DxfPoint();
+            knotvalues = new List<double>();
+            controlpoints = new List<DxfPoint>();
+            fitpoints = new List<DxfPoint>();
+        }
+        public DxfPoint Normal => normal;
 
         [Flags]
         public enum FlagsEnum
@@ -33,22 +47,22 @@ namespace WebErp.Dxf.Entities
         public double ControlPointTolerance { get; set; }
         public double FitPointTolerance { get; set; }
 
-        private DxfPoint starttangent = new DxfPoint();
-        public DxfPoint StartTangent { get { return starttangent; } }
+        
+        public DxfPoint StartTangent => starttangent; 
 
-        private DxfPoint endtangent = new DxfPoint();
-        public DxfPoint EndTangent { get { return endtangent; } }
+        
+        public DxfPoint EndTangent => endtangent; 
 
-        private List<double> knotvalues = new List<double>();
-        public List<double> KnotValues { get { return knotvalues; } }
+        
+        public List<double> KnotValues => knotvalues; 
 
         public double Weight { get; set; }
 
-        private List<DxfPoint> controlpoints = new List<DxfPoint>();
-        public List<DxfPoint> ControlPoints { get { return controlpoints; } }
+        
+        public List<DxfPoint> ControlPoints => controlpoints; 
 
-        private List<DxfPoint> fitpoints = new List<DxfPoint>();
-        public List<DxfPoint> FitPoints { get { return fitpoints; } }
+        
+        public List<DxfPoint> FitPoints =>fitpoints; 
 
         private DxfPoint LastControlPoint
         {
@@ -76,7 +90,7 @@ namespace WebErp.Dxf.Entities
             }
         }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             switch (groupcode)

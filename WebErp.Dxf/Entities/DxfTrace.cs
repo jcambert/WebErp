@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebErp.Dxf.Parsers.Attributes;
+using WebErp.Dxf.Attributes;
 
 namespace WebErp.Dxf.Entities
 {
     [Entity("TRACE")]
-    internal class DXFTrace : DxfEntity
+    public class DXFTrace : DxfEntity
     {
-        private DxfPoint extrusion = new DxfPoint();
-        public DxfPoint ExtrusionDirection { get { return extrusion; } }
-        private DxfPoint[] corners = new DxfPoint[] { new DxfPoint(), new DxfPoint(), new DxfPoint() };
-        public DxfPoint[] Corners { get { return corners; } }
+        private readonly DxfPoint extrusion ;
+        private readonly DxfPoint[] corners ;
+
+        public DXFTrace()
+        {
+            extrusion = new DxfPoint();
+            corners = new DxfPoint[] { new DxfPoint(), new DxfPoint(), new DxfPoint() };
+        }
+        public DxfPoint ExtrusionDirection => extrusion; 
+        
+        public DxfPoint[] Corners=> corners; 
 
         public double Thickness { get; set; }
 
-        public override void Parse(int groupcode, string value)
+        internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
             if (groupcode >= 10 && groupcode <= 33)
