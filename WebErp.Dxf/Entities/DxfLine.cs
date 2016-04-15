@@ -59,5 +59,11 @@ namespace WebErp.Dxf.Entities
 
             }
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+
+        }
     }
 }

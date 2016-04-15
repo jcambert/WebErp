@@ -15,11 +15,17 @@ namespace WebErp.Dxf
         //public const string START_GROUP = "0";
         public const string SECTION = "SECTION";
         public const string ENDSECTION = "ENDSEC";
-        public const string TABLE = "TABLE";
+        public const string TABLE = "TABLE>";
         public const string ENDTABLE = "ENDTAB";
         public const string END = "EOF";
-
+        public const string HEADER = "HEADER";
+        public const string CLASSES = "CLASSES";
+        public const string TABLES = "TABLES";
+        public const string ENTITIES = "ENTITIES";
         public const int START_GROUP_CODE = 0;
+        public const int START_SECTION = 2;
+        public const int END_SECTION = 0;
+        public const int END_DOCUMENT= 0;
 
 
         private readonly DxfHeader _header;
