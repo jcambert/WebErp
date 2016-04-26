@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using WebErp.Dxf.Attributes;
@@ -10,15 +13,34 @@ namespace WebErp.Dxf.Entities
     [Entity("CIRCLE")]
     public class DxfCircle : DxfEntity
     {
-        public double Thickness { get; set; }
-        private DxfPoint center = new DxfPoint();
-        public DxfPoint Center { get { return center; } }
 
+        Dictionary<int, Expression<Func<DxfCircle>>> maps = new Dictionary<int, Expression<Func<DxfCircle>>>();
+        private readonly DxfPoint center;
+        private readonly DxfPoint extrusion;
+
+        public DxfCircle()
+        {
+            center = new DxfPoint();
+            extrusion = new DxfPoint();
+        }
+
+        public double Thickness { get; set; }
+
+        [EntityCode(10, "X")]
+        [EntityCode(20, "Y")]
+        [EntityCode(30, "Z")]
+        public DxfPoint Center => center;
+
+        [EntityCode(40)]
         public double Radius { get; set; }
 
-        private DxfPoint extrusion = new DxfPoint();
+        [EntityCode(210,"X")]
+        [EntityCode(220,"Y")]
+        [EntityCode(230,"Z")]
         public DxfPoint ExtrusionDirection => extrusion;
 
+        
+       
         internal override void Parse(int groupcode, string value)
         {
             base.Parse(groupcode, value);
@@ -49,6 +71,32 @@ namespace WebErp.Dxf.Entities
                     ExtrusionDirection.Z = double.Parse(value);
                     break;
             }
+
+            //SetPropertyFromDbValue<DxfCircle,double?>(this, o=>ExtrusionDirection.X,double.Parse(value));
+            
         }
+
+        
+
+
     }
+
+    [AttributeUsage(AttributeTargets.Property,AllowMultiple =true,Inherited = true)]
+    public class EntityCodeAttribute : Attribute
+    {
+        private readonly int _code;
+        private readonly string _propertyName;
+
+        public EntityCodeAttribute(int code,string propertyName="")
+        {
+            this._code = code;
+            this._propertyName = propertyName;
+        }
+
+        public int Code => _code;
+
+        public string PropertyName => _propertyName;
+    }
+  
+    
 }

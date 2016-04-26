@@ -10,8 +10,7 @@ namespace WebErp
     {
         public static bool IsNullOrEmpty(this string s)
         {
-            if (s.IsNull()) return true;
-            return s.Trim().Length == 0;
+            return string.IsNullOrEmpty(s);
         }
     }
 }

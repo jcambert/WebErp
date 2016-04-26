@@ -12,7 +12,7 @@ namespace WebErp.Dxf.Attributes
         private readonly string _name;
         public NameAttribute(string name)
         {
-            Contract.Requires(!name.IsNullOrEmpty(), "Attribute Name cannot be null or empty");
+            Contract.Requires(name!=null, "Attribute Name cannot be null or empty");
             this._name = name;
         }
 

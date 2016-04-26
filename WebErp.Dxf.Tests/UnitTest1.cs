@@ -12,7 +12,8 @@ namespace WebErp.Dxf.Tests
         [TestMethod]
         public async Task TestMethod1()
         {
-            string _filename = @"Q:\dxf\etagere-renfort-poub{0}.dxf";
+            //string _filename = @"Q:\dxf\etagere-renfort-poub{0}.dxf";
+            string _filename = @"C:\Users\jc\Documents\test1{0}.dxf";
             string filename = String.Format(_filename, "");
             string copy = String.Format(_filename, "-copy");
 

@@ -40,7 +40,7 @@ namespace WebErp.Dxf.Writers
             await WriteSection(WriteTables);
             await WriteSection(WriteEntities);
             await writer.WriteLineAsync(DxfDocument.END_DOCUMENT.ToString());
-            await writer.WriteLineAsync(DxfDocument.END);
+            await writer.WriteAsync(DxfDocument.END);
 
         }
 
@@ -95,15 +95,15 @@ namespace WebErp.Dxf.Writers
         private async Task WriteEntities()
         {
             await writer.WriteLineAsync(DxfDocument.ENTITIES);
+            foreach (var entity in Document.Entities)
+            {
+                var s = entity.ToString();
+                if (s.IsNullOrEmpty()) continue;
+                await writer.WriteLineAsync(s);
+            }
         }
 
     }
 
-    public class HeaderWriter : ISectionWriter
-    {
-        public void Write()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }

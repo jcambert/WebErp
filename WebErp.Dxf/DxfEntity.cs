@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebErp.Dxf.Entities;
 using WebErp.Dxf.Parsers;
 
 namespace WebErp.Dxf
@@ -17,15 +18,24 @@ namespace WebErp.Dxf
             children = new List<DxfEntity>();
 
         }
+
+        [EntityCode(0)]
         public string EntityType { get; set; }
+        [EntityCode(5)]
         public string Handle { get; set; }
 
         public List<string> ClassHierarchy => classhierarchy;
+        [EntityCode(67)]
         public bool IsInPaperSpace { get; set; }
+        [EntityCode(8)]
         public string LayerName { get; set; }
+        [EntityCode(6)]
         public string LineType { get; set; }
+        [EntityCode(62)]
         public int ColorNumber { get; set; }
+        [EntityCode(48)]
         public double LineTypeScale { get; set; }
+        [EntityCode(60)]
         public bool IsInvisible { get; set; }
 
         public virtual bool HasChildren => children.Count > 0;
@@ -64,6 +74,14 @@ namespace WebErp.Dxf
                     IsInvisible = int.Parse(value) == 1;
                     break;
             }
+        }
+
+        public override string ToString()
+        {
+
+            EntitySerializer ser = EntitySerializerProvider.Get(this.GetType());
+
+            return ser.Write(this);
         }
     }
 }

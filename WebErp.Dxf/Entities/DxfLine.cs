@@ -10,16 +10,30 @@ namespace WebErp.Dxf.Entities
     [Entity("LINE")]
     public class DxfLine : DxfEntity
     {
-        private DxfPoint start = new DxfPoint();
-        public DxfPoint Start { get { return start; } }
+        private readonly DxfPoint start ;
+        private readonly DxfPoint end ;
+        private readonly DxfPoint extrusion ;
+        public DxfLine()
+        {
+            start = new DxfPoint();
+            end = new DxfPoint();
+            extrusion = new DxfPoint();
+        }
 
-        private DxfPoint end = new DxfPoint();
-        public DxfPoint End { get { return end; } }
-
+        [EntityCode(10, "X")]
+        [EntityCode(20, "X")]
+        [EntityCode(30, "X")]
+        public DxfPoint Start => start;
+        [EntityCode(11, "X")]
+        [EntityCode(21, "X")]
+        [EntityCode(31, "X")]
+        public DxfPoint End => end;
+        [EntityCode(39)]
         public double Thickness { get; set; }
-
-        private DxfPoint extrusion = new DxfPoint();
-        public DxfPoint ExtrusionDirection { get { return extrusion; } }
+        [EntityCode(210, "X")]
+        [EntityCode(220, "Y")]
+        [EntityCode(230, "Z")]
+        public DxfPoint ExtrusionDirection => extrusion;
 
         internal override void Parse(int groupcode, string value)
         {
@@ -60,10 +74,10 @@ namespace WebErp.Dxf.Entities
             }
         }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return base.ToString();
 
-        }
+        }*/
     }
 }

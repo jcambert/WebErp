@@ -15,7 +15,7 @@ namespace WebErp.Dxf.Attributes
 
         public SectionParserAttribute(string sectionName)
         {
-            Contract.Requires(!sectionName.IsNullOrEmpty(), "Section Name cannot be null or empty");
+            Contract.Requires(sectionName!=null, "Section Name cannot be null or empty");
             this._name = sectionName;
         }
 
