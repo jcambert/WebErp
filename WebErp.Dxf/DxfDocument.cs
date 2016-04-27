@@ -55,6 +55,7 @@ namespace WebErp.Dxf
 
         public string Filename { get; internal set; }
 
+        [Pure]
         public static DxfDocument Load(string filename)
         {
             Contract.Requires(!filename.IsNullOrEmpty(), "File name cannot be null nor empty");
@@ -65,7 +66,7 @@ namespace WebErp.Dxf
             stream.Close();
             return doc;
         }
-
+        [Pure]
         internal static DxfDocument Load(Stream file)
         {
             Contract.Requires(file.IsNotNull(), "File as stream cannot be null");

@@ -13,7 +13,7 @@ namespace WebErp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603031544254_Initial"; }
+            get { return "201604271553206_Initial"; }
         }
         
         string IMigrationMetadata.Source

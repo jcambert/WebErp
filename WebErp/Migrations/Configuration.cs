@@ -1,6 +1,5 @@
 namespace WebErp.Migrations
 {
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -27,12 +26,6 @@ namespace WebErp.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            
-            for (int i = 1; i <= 300; i++)
-            {
-                context.Articles.AddOrUpdate(new Article { ID="999-Code-"+i, Societe = 999, Code = "Code-" + i, Libelle = "Libelle-" + i });
-            }
         }
     }
 }

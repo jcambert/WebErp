@@ -13,13 +13,14 @@ using WebErp.Data.Configurations;
 using WebErp.Data.Infrastructure;
 using WebErp.Data.Models;
 using WebErp.Models;
+using WebErp.Models.eTole;
 
 namespace WebErp.Data
 {
     public interface IContext:IDisposable
     {
         IDbSet<Article> Articles { get; set; }
-
+        IDbSet<PartTree> PartTree { get; set; }
         DbChangeTracker ChangeTracker { get; }
         DbContextConfiguration Configuration { get; }
         Database Database { get; }
@@ -90,7 +91,9 @@ namespace WebErp.Data
         //[Inject]
         public virtual IDbSet<Article> Articles { get; set; }
 
-       // [Inject]
+        public virtual IDbSet<PartTree> PartTree { get; set; }
+
+        // [Inject]
         //public override IDbSet<IdentityRole> Roles { get; set; }
 
         //[Inject]

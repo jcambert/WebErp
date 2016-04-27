@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -7,22 +8,35 @@ using System.Threading.Tasks;
 
 namespace WebErp.Models
 {
-    public abstract class ModelBase : IModelBase
+    public abstract class ModelBase :ReactiveObject, IModelBase
     {
+        private int _societe;
+        private string _code;
         /// <summary>
         /// Id Key Societe + Code
         /// </summary>
-        public string ID { get; set; }
+        public string ID
+        {
+            get
+            {
+                return string.Format("{0}-{1}", _societe.ToString(), _code);
+            }
+            set
+            {
+                _societe = Int32.Parse( value.Split('-')[0]);
+                _code = value.Split('-')[1];
+            }
+        }
 
         /// <summary>
         /// Societe is first key
         /// </summary>
-        public int Societe { get; set; }
+        public int Societe { get { return _societe; } set { _societe = value; } }
 
         /// <summary>
         /// Code is Second key
         /// </summary>
-        public string Code { get; set; }
+        public string Code { get { return _code; } set { _code = value; } }
     }
 
     [ContractClass(typeof(ModelBaseContract))]
@@ -34,7 +48,7 @@ namespace WebErp.Models
     }
 
     [ContractClassFor(typeof(IModelBase))]
-    internal sealed class ModelBaseContract : IModelBase
+    internal abstract class ModelBaseContract : IModelBase
     {
         public string ID { get; set; }
         public int Societe { get; set; }

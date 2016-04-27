@@ -17,11 +17,20 @@ using WebErp.Models;
 using System;
 using WebErp.Extensions;
 using System.Collections.Generic;
+using Microsoft.AspNet.SignalR;
 
 namespace WebErp.Controllers
 {
     public class WebErpApiController<T> : ApiController, IInitializable where T : class, IModelBase, new()
     {
+
+        Lazy<IHubContext> hub = new Lazy<IHubContext>(
+         () => GlobalHost.ConnectionManager.GetHubContext<WebErpHub>()
+        );
+
+
+
+        protected IHubContext Hub => hub.Value;
 
         [Inject]
         public IModelBaseRepository<T> Repository { get; set; }
@@ -78,10 +87,10 @@ namespace WebErp.Controllers
 
         }
 
-       /* public IQueryable<T> Post_Get([FromBody] GetModelBySearchRequest request)
-        {
-            return this.Get();
-        }*/
+        /* public IQueryable<T> Post_Get([FromBody] GetModelBySearchRequest request)
+         {
+             return this.Get();
+         }*/
         // PUT: api/Articles/5
         [ResponseType(typeof(void))]
         public IHttpActionResult Put(string id, T entity)
@@ -125,8 +134,8 @@ namespace WebErp.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            db.Set<T>().Add(entity);
+            Repository.Add(entity);
+            // db.Set<T>().Add(entity);
 
             try
             {
@@ -156,8 +165,8 @@ namespace WebErp.Controllers
             {
                 return NotFound();
             }
-
-            db.Set<T>().Remove(entity);
+            Repository.Delete(entity);
+            //db.Set<T>().Remove(entity);
             db.SaveChanges();
 
             return Ok(entity);
@@ -174,6 +183,7 @@ namespace WebErp.Controllers
 
         private bool EntityExists(string id)
         {
+
             return db.Set<T>().Count(e => e.ID == id) > 0;
         }
 

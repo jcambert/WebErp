@@ -20,6 +20,12 @@ namespace WebErp.Data.Configurations
         public virtual void ConfigureModel(DbModelBuilder builder)
         {
             this.Builder = builder.Entity<T>();
+            ConfigureKey();
+        }
+
+        protected virtual void ConfigureKey()
+        {
+
         }
     }
     public abstract class ModelBaseConfiguration<T> : IModelBaseConfiguration<T> where T : class, IModelBase
@@ -41,8 +47,13 @@ namespace WebErp.Data.Configurations
         public virtual void ConfigureModel(DbModelBuilder builder)
         {
             this.Builder = builder.Entity<T>();
-            Builder.HasKey(e => new { e.Societe, e.Code });
+            ConfigureKey();
 
+        }
+
+        protected virtual void ConfigureKey()
+        {
+            Builder.HasKey(e => e.ID /*new { e.Societe, e.Code }*/);
         }
     }
 }

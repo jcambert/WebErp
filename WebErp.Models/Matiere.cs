@@ -9,7 +9,7 @@ namespace WebErp.Models
 {
     public class Matiere:ModelBase
     {
-        public Density Desnite { get; set; }
+        public Density Densite { get; set; }
 
         public string Numero { get; set; }
 
