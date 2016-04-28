@@ -1,7 +1,9 @@
 ﻿(function (window, angular) {
     'use strict';
     var app = angular.module('webErpAdmin');
-    app.service('hub', hubService);
+    app.service('hub', hubService)
+    
+    ;
 
     /** @ngInject */
     function hubService($, $rootScope, $log) {
@@ -97,6 +99,35 @@
 
 
     }
+     
 
+    var core = angular.module('core',[]);
+    core.provider('menu', menuProvider);
+    /** @ngInject */
+    function menuProvider() {
+        var _menu = [];
+
+        this.add = function (menuItem) {
+            _menu.push(menuItem);
+        }
+
+        this.remove = function (menuItem) {
+
+        }
+
+        this.disable= function (menuItem) {
+
+        }
+
+        this.$get = function () {
+            return {
+                getItems: function () {
+                    return _menu;
+                }
+            };
+        };
+
+       
+    } 
 
 })(window, angular );

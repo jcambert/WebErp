@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr,$translate) {
+  function MainController(menu,$timeout, webDevTec, toastr,$translate) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -40,6 +40,8 @@
     vm.appIcon='pagelines';
     vm.user={photo:'http://lorempixel.com/32/32/people/1/',firstname:"Jean-Christophe",lastname:"Ambert", fullname:'Ambert Jean-Christophe'};
     
+    vm.menuSections = menu.getItems();
+      /*
      vm.menuSections=[{
                 title:'GENERAL',
                 menus:[
@@ -99,5 +101,7 @@
                     }
                 ]
             }];
+
+      */
   }
 })(angular);

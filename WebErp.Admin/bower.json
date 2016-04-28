@@ -29,7 +29,8 @@
     "jsTag": "^0.3.7",
     "angular-scroll": "^1.0.0",
     "angulartics-google-analytics": "^0.1.4",
-    "angular-drag-and-drop-lists": "^1.4.0"
+    "angular-drag-and-drop-lists": "^1.4.0",
+    "ng-table": "^0.8.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

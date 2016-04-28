@@ -1,10 +1,10 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <w-menu-section ng-repeat="section in sections" ng-transclude>
         <h3>{{section.title}}</h3>
-         <ul class="nav side-menu">
+         <ul class="nav side-menu" ng-if="section.menus">
              <li ng-repeat="menu in section.menus">
-                 <a tooltip-placement="right" uib-tooltip="{{menu.tooltip | translate}}"><i class="fa fa-{{menu.icon}}"></i>{{menu.text}}<span class="fa fa-chevron-down"></span></a>
-                 <w-menu-item ></w-menu-item>
+                 <a tooltip-placement="right" uib-tooltip="{{menu.tooltip | translate}}" a-menu="menu"><i class="fa fa-{{menu.icon}}"></i>{{menu.text}}<span class="fa fa-chevron-down" ng-if="menu.childs.length>0"></span></a>
+                 <w-menu-item ng-if="menu.childs.length>0"></w-menu-item>
             </li>
          </ul>
     </w-menu-section>

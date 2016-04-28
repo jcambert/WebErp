@@ -131,8 +131,7 @@
           
         };
     })
-    
-    
+       
     .directive('wTopbar',/** @ngInject */function(){
         return{
           restrict:'E',
@@ -179,7 +178,7 @@
           restrict:'E',
           replace:true, 
           transclude:true, 
-          template:'<li class="" uib-dropdown is-open="false" ng-transclude></li>'
+          template: '<li class="" uib-dropdown  is-open="false" ng-transclude></li>'
         };
     })
     
@@ -448,6 +447,20 @@
 
             }    
         };
-    });
+    })
     
+    .directive('aMenu',/** @ngInject*/function($compile,$log){
+        return {
+            restrict: 'A',
+            link: function ($scope, $element, $attrs) {
+                var elt = angular.element($element);
+                if (angular.isDefined($scope.menu.state) && $scope.menu.state !== "")
+                    $element.attr('ui-sref', $scope.menu.state);
+                if (angular.isDefined($scope.menu.link) && $scope.menu.link !== "")
+                    $element.attr('ng-href', $scope.menu.link);
+               // $compile(elt)($scope);
+                $log.log($scope);
+            }
+        }
+    });
 })(window,angular);
