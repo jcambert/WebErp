@@ -18,10 +18,18 @@
   "code_article": "Code Article",
   "add-quotation-tooltip": "Ajouter une offre",
   "materials": "Matières",
+  "material-management": "Gestion des matières",
+  "add-material-tooltip": "Ajouter une matière",
+  "material-list": "Liste des matières",
+  "table-setttings-tooltip": "Préférences de la table",
   "add": "Ajouter",
   "tous": "Tous",
   "creer": "Nouveau",
   "temp": "Temporaire",
   "list": "Liste",
-  "x": "x"
+  "x": "x",
+  "ok": "Valider",
+  "cancel": "Annuler",
+  "yes": "Oui",
+  "no": "Non"
 }

@@ -1,0 +1,92 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">{{'table-setttings-tooltip' | translate}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default ng-scope"  ng-controller="tablePreferencesCtrl ">
+                    <div class="panel-heading">Table preferences</div>
+                    <div class="panel-body ng-valid ng-dirty ng-valid-parse" ng-form="tablePrefsForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Settings</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal ng-valid ng-dirty ng-valid-parse" name="defaultSettingsForm">
+                                            <div class="form-group">
+                                                <label for="defaultSort" class="col-md-6 control-label">Default Sort</label>
+                                                <div class="col-md-6">
+                                                    <select id="defaultSort" name="defaultSort" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-model="defaultSettings.defaultSort">
+                                                        <option value="" style="display: none"></option>
+                                                        <option value="desc">Desc</option>
+                                                        <option value="asc">Asc</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pageSizes" class="col-md-6 control-label">Page Sizes</label>
+                                                <div class="col-md-6">
+                                                    <select id="pageSizes" name="pageSizes" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-model="defaultSettings.counts" ng-options="item.sizes as item.label for item in pageSizes"><option value="object:3" label="5 10 20" selected="selected">5 10 20</option><option value="object:4" label="10 20 50">10 20 50</option></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pageSizes" class="col-md-6 control-label">Filter matching:</label>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="filterMatching" ng-value="true" ng-model="defaultSettings.filterOptions.filterComparator" class="ng-pristine ng-untouched ng-valid" value="true"> Exact
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="filterMatching" ng-value="false" ng-model="defaultSettings.filterOptions.filterComparator" class="ng-valid ng-dirty ng-valid-parse ng-touched" value="false"> Contains
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <small><em>Note: this is a sample of the </em><code>settings</code><em> available</em></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Initial parameters</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal ng-pristine ng-valid" name="initialParamsForm">
+                                            <div class="form-group">
+                                                <label for="page" class="col-md-6 control-label">Initial Page</label>
+                                                <div class="col-md-6">
+                                                    <input type="number" name="page" id="page" class="form-control ng-pristine ng-untouched ng-valid" ng-model="initialParams.page">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pageSize" class="col-md-6 control-label">Initial Page Size</label>
+                                                <div class="col-md-6">
+                                                    <select id="pageSize" name="pageSize" class="form-control ng-pristine ng-untouched ng-valid" ng-model="initialParams.count" ng-options="page for page in defaultSettings.counts"><option value="number:10" label="10" selected="selected">10</option><option value="number:20" label="20" selected="selected">20</option><option value="number:50" label="50">50</option></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pageSizes" class="col-md-6 control-label">Initial sorting:</label>
+                                                <div class="col-md-6">
+                                                    <select id="initialSort" name="initialSort" class="form-control ng-pristine ng-untouched ng-valid" ng-model="initialParams.sorting" ng-options="sort.value as sort.label for sort in initialSorting"><option value="" class="" selected="selected"></option><option value="object:5" label="Id ASC">Id ASC</option><option value="object:6" label="Id DESC">Id DESC</option><option value="object:7" label="Name ASC">Name ASC</option><option value="object:8" label="Name DESC">Name DESC</option></select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <small><em>Note: this is a sample of the </em><code>parameters</code> <em>available</em></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn pull-right btn-primary" type="button" ng-click="applyPreferences()">Apply</button>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{ 'ok' | translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">{{'cancel' | translate}}</button>
+    </div>
+</div>

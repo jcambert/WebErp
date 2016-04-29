@@ -3,6 +3,7 @@
 
     angular
       .module('quotation')
+      .constant('partials',(partials()))
       .config(config)
     ;
 
@@ -17,7 +18,7 @@
                     state: 'quotation',
                     childs: [{
                         text: 'list',
-                        state:'quotation',
+                        state:'quotation.list',
                         label: {
                             variation: 'success',
                             text: 10
@@ -40,5 +41,16 @@
         });
     }
 
+    /** @ngInject */
+    function partials () {
+        var partial_dir = 'app/quotation/';
+        var ext = '.html';
+        return {
+            BASE_DIR: partial_dir,
+            MAIN: partial_dir + 'main' + ext,
+            MATERIAL: partial_dir + 'material' + ext,
+            TABLESETTINGS: partial_dir + 'tableSettings' + ext
+        }
+    }
 })();
 
